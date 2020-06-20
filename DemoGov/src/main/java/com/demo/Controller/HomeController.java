@@ -1,17 +1,21 @@
 package com.demo.Controller;
 
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.demo.Entities.AgricultureTable1;
 import com.demo.Entities.OtpGen;
@@ -340,6 +344,7 @@ return model;
 			user.setLoc_id(otp.getLoc_id());
 			user.setName(otp.getName());
 			user.setPassword(otp.getPassword());
+			user.setApprove(0);
 			userRepo.save(user);
 			otpRepo.delete(otp);
 			return "login.jsp";
@@ -359,4 +364,33 @@ return model;
 //	public String logindone() {
 //		return null;
 //	}
+	
+	@RequestMapping("/admin")
+	public String admin() {
+		return "admincover.jsp";
+	}
+	
+	@RequestMapping("/userapp")
+	public ModelAndView userapp() {
+		
+		ModelAndView model = new ModelAndView("approveuser.jsp");
+		List<User> all = userRepo.findAll();
+		List<User> list = new ArrayList<>();
+		for(User user : all) {
+			if(user.getApprove()==0) {
+				list.add(user);
+			}
+		}
+		model.addObject("list", list);
+		return model;
+	}
+	
+	@RequestMapping("/app/{id}")
+	public String app(@PathVariable("id") Long id, RedirectAttributes red) {
+//		System.out.println(id);
+		User user = userRepo.findById(id).get();
+        user.setApprove(1);
+        userRepo.save(user);
+		return "redirect:/userapp";
+	}
 }

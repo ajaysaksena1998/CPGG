@@ -13,7 +13,7 @@ public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
-	int id;
+	Long id;
 	
 	@Column(name = "loc_category")
 	String loc_category;
@@ -29,27 +29,22 @@ public class User {
 	
 	@Column(name = "password")
 	String password;
+	
+	@Column(name="approve")
+	int approve;
+	
+	
 
-	public int getId() {
-		return id;
+	public int getApprove() {
+		return approve;
 	}
 
-	public void setId(int id) {
-		this.id = id;
+	public void setApprove(int approve) {
+		this.approve = approve;
 	}
 
 	public String getName() {
 		return name;
-	}
-
-	public User(int id, String loc_category, String loc_id, String name, String email, String password) {
-		super();
-		this.id = id;
-		this.loc_category = loc_category;
-		this.loc_id = loc_id;
-		this.name = name;
-		this.email = email;
-		this.password = password;
 	}
 
 	public void setName(String name) {
@@ -71,11 +66,33 @@ public class User {
 	public void setPassword(String password) {
 		this.password = password;
 	}
+	
+
+
 
 	@Override
 	public String toString() {
 		return "User [id=" + id + ", loc_category=" + loc_category + ", loc_id=" + loc_id + ", name=" + name
-				+ ", email=" + email + ", password=" + password + "]";
+				+ ", email=" + email + ", password=" + password + ", approve=" + approve + "]";
+	}
+
+	public User(Long id, String loc_category, String loc_id, String name, String email, String password, int approve) {
+		super();
+		this.id = id;
+		this.loc_category = loc_category;
+		this.loc_id = loc_id;
+		this.name = name;
+		this.email = email;
+		this.password = password;
+		this.approve = approve;
+	}
+
+	public Long getId() {
+		return id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
 	}
 
 	public String getLoc_category() {
