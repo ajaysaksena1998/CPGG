@@ -14,6 +14,7 @@
 <!-- partial:index.partial.html -->
 <form action="/otpverified" method="post">
   <h2>Please enter your Otp</h2>
+  <h4>Otp is valid only for 15 minutes</h4>
 		<p>
 			<label for="OTP" class="floatLabel">OTP</label>
 			<input id="OTP" name="otp" type="text">

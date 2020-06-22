@@ -25,10 +25,9 @@
             </a>
         </div>
         <ul class="navbar-list" id="navbarList">
-            <li class="navbar-list-items"><a href="/index.html" class="navbar-link">Home</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/secondpage.html" class="navbar-link">Dasboard</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">Des Uttarakhand</a></li>
-            <li class="navbar-list-items" ><button class="select-language-button">Language</button></li>
+            <li class="navbar-list-items"><a href="/redirect" class="navbar-link">Home</a></li>
+            <li class="navbar-list-items" ><a target="_blank" href="/mainPage.jsp" class="navbar-link">Des UK</a></li>
+            <li class="navbar-list-items" ><a class="navbar-link" href="/openlogin">User Login</a></li>
         </ul>
     </div>
 

@@ -28,7 +28,7 @@
           labels: ${data.keySet()},
           datasets: [{
             label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            backgroundColor: ["#3e95cd", "#FF4500","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C","#800000","#808000","#FF0000","#808080","#00FFFF"],
             data: ${data.values()}
           }]
         },

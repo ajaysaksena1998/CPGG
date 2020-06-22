@@ -26,6 +26,8 @@
         </div>
         <ul class="navbar-list" id="navbarList">
            <li class="navbar-list-items"><a href="/login" class="navbar-link">Home</a></li>
+                                   <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
+           
             <!-- <li class="navbar-list-items" ><a target="_blank" href="/secondpage.html" class="navbar-link">Dasboard</a></li>
             <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">Des Uttarakhand</a></li>-->
             <li class="navbar-list-items" ><a class="select-language-button" style="text-decoration: none;" href="/">Log Out</a></li>

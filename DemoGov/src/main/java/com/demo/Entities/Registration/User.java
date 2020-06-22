@@ -33,10 +33,20 @@ public class User {
 	@Column(name="approve")
 	int approve;
 	
+	@Column(name = "role")
+	String role;
 	
 
 	public int getApprove() {
 		return approve;
+	}
+
+	public String getRole() {
+		return role;
+	}
+
+	public void setRole(String role) {
+		this.role = role;
 	}
 
 	public void setApprove(int approve) {
@@ -70,13 +80,10 @@ public class User {
 
 
 
-	@Override
-	public String toString() {
-		return "User [id=" + id + ", loc_category=" + loc_category + ", loc_id=" + loc_id + ", name=" + name
-				+ ", email=" + email + ", password=" + password + ", approve=" + approve + "]";
-	}
 
-	public User(Long id, String loc_category, String loc_id, String name, String email, String password, int approve) {
+
+	public User(Long id, String loc_category, String loc_id, String name, String email, String password, int approve,
+			String role) {
 		super();
 		this.id = id;
 		this.loc_category = loc_category;
@@ -85,6 +92,13 @@ public class User {
 		this.email = email;
 		this.password = password;
 		this.approve = approve;
+		this.role = role;
+	}
+
+	@Override
+	public String toString() {
+		return "User [id=" + id + ", loc_category=" + loc_category + ", loc_id=" + loc_id + ", name=" + name
+				+ ", email=" + email + ", password=" + password + ", approve=" + approve + ", role=" + role + "]";
 	}
 
 	public Long getId() {

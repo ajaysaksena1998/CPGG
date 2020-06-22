@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -14,57 +15,28 @@
     
     <div class="front-page-navbar">
     <img src="${pageContext.request.contextPath }/template/images/uk.png" alt="uk-logo" class="main-logo" id="mainLogo">
-       <!-- <a onclick="document.getElementById('loginWindow').style.display='block'" class="button button-1">User Login</a> -->
-       <a href="/openlogin" class="button button-1">User Login</a>
-        <!--<a href="/second page.html"  class="button button-2">Guest Login</a>
-        <a href=""  class="button button-3">SAS Login </a> -->
+        <a class="button button-1" href="/openlogin">User Login</a>
+        <a href="/adminlogin" class="button button-2">Admin Login</a>
     </div>
-    <div id="loginWindow" class="login-window">
-        <span onclick="document.getElementById('loginWindow').style.display='none'" class="close-login-window" title="Close Modal">
-            &times;
-        </span>
-      
-        <!-- LOGIN FORM -->
-        <form class="login-window-content login-window-animate" action="/login" method="POST">
-          
-          <div class="container">
-            <br><br>
-            <label for="uname"><b>Username: </b></label>
-            <input type="text" placeholder="Enter Username" name="uname" class="login-input-field" required>
-            <br><br>
-            <label for="psw"><b>Password: </b></label>
-            <input type="password" placeholder="Enter Password" name="psw" class="login-input-field" required>
-            <br><br>
-            <button type="submit" class="login-button"> Login </button>
-            <button type="button" class="login-cancel-button" onclick="document.getElementById('loginWindow').style.display='none'" >Cancel</button>
-            <br><br>
-            <label>
-              <input type="checkbox" checked="checked" name="remember"> Remember me
-            </label>
-          </div>
-      
-          <div class="container" style="background-color:#f1f1f1">
-              <a href="#" class="forgot-password-link">Forget Password</a>
-          </div>
-        </form>
-    </div>
-    <div class="front-page-midsection">
-    <br><br><br><br><br><br>
-        <h1 class="heading-1">UTTARAKHAND INTEGRATED STATISTICAL SYSTEM</h1>
+    
+    <div  class="front-page-midsection"></div>
+    <div>
+    <br><br><br><br><br><br><br><br>
+        <h1 class="heading-1">Uttarakhand Integrated Statistical System</h1>
         <h1 >UISS</h1>
         <hr>
         <h2>Central Data Repository</h2>
         <div class="flip-box">
         <div class="flip-box-inner">
             <div class="flip-box-front">
-            <h2>Know More</h2>
+            <h2><a>Know More</a></h2>
             </div>
             <div class="flip-box-back">
             <h2 ><a href="/secondPage">Guest Login</a></h2>
             </div>
         </div>
         </div>
-    <br><br><br><br><br><br><br><br><br><br><br><br><br>
+    <br><br><br><br><br><br><br><br><br><br><br>
     </div>
     <div class="front-page-footer">
         <h3>Directorate of Economics & Statastics</h3>
@@ -72,7 +44,27 @@
         <h3>Government Of Uttarakhand</h3>
         <p> Designed and Developed by UPES(Dehradun).</p>
     </div>
-    <script>
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script type="text/javascript">
+      var images = ["1.jpg","2.jpg", "3.jpg","4.jpg","5.jpg","6.jpg","7.jpg", "8.jpg","9.jpg","10.jpg","11.jpg","12.jpg", "13.jpg","14.jpg","15.jpg","16.jpg","17.jpg", "18.jpg","19.jpg","20.jpg","21.jpg", "22.jpg"];
+      $(function () 
+        {
+            var i = 0;
+            $(".front-page-midsection").css("background-image", "url(../template/Cover/" + images[i] + ")");
+            setInterval(function () 
+            {
+                i++;
+                if (i == images.length) {
+                    i = 0;
+                }
+                //Changes the background picture
+                $(".front-page-midsection").fadeOut("fast", function () 
+                {
+                    $(this).css("background-image", "url(../template/Cover/" + images[i] + ")");
+                    $(this).fadeIn("slow");
+                });
+            }, 4000);
+        });
     window.onscroll = function() {myFunction()};
 
         function myFunction() {

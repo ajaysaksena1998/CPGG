@@ -1,4 +1,4 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
+ <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html lang="en">
@@ -10,6 +10,8 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/agriculture.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/footer.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/style.css">
+      <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/cs.css" type="text/css">
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
     <script src="https://kit.fontawesome.com/7fc0c7085f.js" crossorigin="anonymous"></script>
     <link rel="icon" href="favicon.ico">
 </head>
@@ -24,17 +26,17 @@
             </a>
         </div>
         <ul class="navbar-list" id="navbarList">
-            <li class="navbar-list-items"><a href="/login" class="navbar-link">Home</a></li>
-            <!-- <li class="navbar-list-items" ><a target="_blank" href="/secondpage.html" class="navbar-link">Dasboard</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">Des Uttarakhand</a></li>-->
-            <li class="navbar-list-items" ><a class="select-language-button" style="text-decoration: none;" href="/">Log Out</a></li>
+            <li class="navbar-list-items"><a href="/" class="navbar-link">Home</a></li>
+                                    <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
+            
+            <li class="navbar-list-items" ><button class="select-language-button"><a href="/" style="color: white;">Logout</a></button></li>
         </ul>
     </div>
 
     <!-- MIDSECTION -->
     <div class="midsection">
         <h1 class="department-midsection-text">Welcome!!</h1>
-        <div class="container">
+        <div class="container5">
             <h2>Chosse from Departments:</h2>
             <div class="select-box">
                 <div class="options-container">
@@ -77,6 +79,36 @@
                 </div>
             </div>
         </div>
+        <div class="container2">
+           
+        </div>
+        <div class="container2">
+            
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart1"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart2"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart3"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart4"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart5"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart6"></canvas>
+        </div>
+        <div class="container1">
+            <canvas id="pie-chart7"></canvas>
+        </div>
     </div>
     <!-- FOOTER SECTION -->
     <footer class="footer-distributed">
@@ -89,7 +121,7 @@
                 <a href="#">Home</a> | <a href="#">Department</a> | <a href="#">Contact</a>
             </p>
 
-            <p class="footer-company-name">© Government of Uttarakhand, All rights reserved</p>
+            <p class="footer-company-name">Â© Government of Uttarakhand, All rights reserved</p>
         </div>
 
         <div class="footer-center">
@@ -156,8 +188,228 @@
             window.location = "./education.jsp";
         });
 
+        // Global Options
+    Chart.defaults.global.defaultFontFamily = 'Lato';
+    //Chart.defaults.global.defaultFontSize = 10;
+    Chart.defaults.global.defaultFontColor = '#777';
+
+    new Chart(document.getElementById("pie-chart"), {
+        type: 'bar',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart1"), {
+        type: 'pie',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart2"), {
+        type: 'line',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart3"), {
+        type: 'radar',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart4"), {
+        type: 'polarArea',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart5"), {
+        type: 'doughnut',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart6"), {
+        type: 'horizontalBar',
+        data: {
+          //insert label here
+          labels: ["2015", "2016", "2017", "2018"],
+          datasets: [{
+            label: "Population (millions)",
+            backgroundColor: ["#3e95cd", "#8e5ea2","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C"],
+            //insert data here
+            data: [408,547,675,734]
+          }]
+        },
+        options: {
+          legend:{
+              display:true,
+              labels:{
+                fontColor:'#000'
+              }
+            },
+            responsive: true,
+            maintainAspectRatio: false,
+      }
+        
+    });
+    new Chart(document.getElementById("pie-chart7"), {
+        type: 'bar',
+        data: {
+          labels: ["2015", "2016", "2017", "2018"],
+      datasets: [{
+          label: "Europe",
+          type: "line",
+          borderColor: "#8e5ea2",
+          data: [18,547,675,34],
+          fill: false
+        }, {
+          label: "Africa",
+          type: "line",
+          borderColor: "#3e95cd",
+          data: [133,221,783,2478],
+          fill: false
+        }, {
+          label: "Europe",
+          type: "bar",
+          backgroundColor: "rgba(0,0,0,0.2)",
+          data: [408,547,675,734],
+        }, {
+          label: "Africa",
+          type: "bar",
+          backgroundColor: "rgba(0,0,0,0.2)",
+          backgroundColorHover: "#3e95cd",
+          data: [133,221,783,2478]
+        }
+      ]
+    },
+    options: {
+      title: {
+        display: false,
+        text: 'Population growth (millions): Europe & Africa'
+      },
+      legend: { display: true }
+    }
+        
+    });
+   
     </script>
 
 </body>
 
-</html>
+</html> 
+
+
+
+
+
+
+

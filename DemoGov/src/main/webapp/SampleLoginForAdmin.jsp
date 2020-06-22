@@ -11,7 +11,7 @@
 </head>
 <body>
 <!-- partial:index.partial.html -->
-<form action="/logindone" method="post">
+<form action="/adminverify" method="post">
   <h2>Sign In</h2>
 		<p>
 			<label for="Email" class="floatLabel">Email</label>
@@ -24,9 +24,6 @@
  -->		</p>
 		<p>
 			<input type="Submit" value="Login" id="submit">
-		</p>
-		<p>	
-			<button formaction="/plregister" value="Sign Up">Sign Up</button>
 		</p>
 	</form>
 	

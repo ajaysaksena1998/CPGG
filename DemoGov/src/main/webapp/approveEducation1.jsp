@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
     pageEncoding="ISO-8859-1"%>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -10,12 +11,16 @@
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/agriculture.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/footer.css" type="text/css">
     <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/style.css">
+    <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+      <link href="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/css/bootstrap.min.css" rel="stylesheet" id="bootstrap-css">
+  <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
+    
     <script src="https://kit.fontawesome.com/7fc0c7085f.js" crossorigin="anonymous"></script>
     <link rel="icon" href="favicon.ico">
     <script>
-    function func(){
-        	alert("Your values have been sent for approval. They will be uploaded once they will get approved.");
-        }
+     function func(){
+    	 alert("All the values have been approved for the below tabel.")
+     }
     </script>
 </head>
 <body>
@@ -32,6 +37,7 @@
             <li class="navbar-list-items"><a href="/login" class="navbar-link">Home</a></li>
                                     <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
             
+                        <li class="navbar-list-items"><a href="/userapp" class="navbar-link">User Approval</a></li>
             <!-- <li class="navbar-list-items" ><a target="_blank" href="/secondpage.html" class="navbar-link">Dasboard</a></li>
             <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">Des Uttarakhand</a></li>-->
             <li class="navbar-list-items" ><a class="select-language-button" style="text-decoration: none;" href="/">Log Out</a></li>
@@ -103,54 +109,51 @@
             </div>
         </div>
 <!--Table Form-->
-        <form action="/institution_district" id="institution_district" method="POST" class="input-form">
+        <form id="institution_district" method="POST" class="input-form">
             <h1 class="heading">Institution District:</h1>
     
-            <label for="Year" class="input-labels"><b>Year:</b></label>
-            <input type="text" name="Year" class="input-fields">
-
-            <label for="district" class="input-labels"><b>District:</b></label>
-            <select name="district" id="Dis-select" >
-            <option value="">Please choose an District</option>
-            <option value="Uttarakhand">Uttarakhand</option>
-            <option value="Chamoli">Chamoli</option>
-            <option value="Tehri">Tehri</option>
-            <option value="Dehradun">Dehradun</option>
-            <option value="Pauri">Pauri</option>
-            <option value="Rudraprayag">Rudraprayag</option>
-            <option value="Haridwar">Haridwar</option>
-            <option value="Pithoragarh">Pithoragarh</option>
-            <option value="Almora">Almora</option>
-            <option value="Nanital">Nanital</option>
-            <option value="Bageshwar">Bageshwar</option>
-            <option value="Champawat">Champawat</option>
-            <option value="US Nagar">US Nagar</option>
-            <option value="Garhwal Mandal">Garhwal Mandal</option>
-            <option value="Kumoun Mandal">Kumoun Mandal</option>
-            </select>
-
-            <label for="Junior_Basic_Schools" class="input-labels"><b>Junior Basic Schools:</b></label>
-            <input type="text" name="Junior_Basic_Schools" class="input-fields">
-
-            <label for="Senior_Secondary" class="input-labels"><b>Senior Secondary:</b></label>
-            <input type="text" name="Senior_Secondary" class="input-fields">
-
-            <label for="Degree" class="input-labels"><b>Degree:</b></label>
-            <input type="text" name="Degree" class="input-fields">
-
-            <label for="Universities" class="input-labels"><b>Universities:</b></label>
-            <input type="text" name="Universities" class="input-fields">
-
-            <label for="Deemed_Universities" class="input-labels"><b>Deemed Universities:</b></label>
-            <input type="text" name="Deemed_Universities" class="input-fields">
-
-            <label for="IIT" class="input-labels"><b>IIT:</b></label>
-            <input type="text" name="IIT" class="input-fields">
-
-            <button type="submit" onclick="func();" class="submit-button">Submit</button>
+            <div class="container">
+<table class="table">
+<thead>
+		<tr>
+		    
+<!-- 			<th width="10%" scope="col">Location Category</th>
+			<th width="10%" scope="col">Location ID</th> -->
+			<th width="10%" scope="col">Year</th>
+			<th width="10%" scope="col">District</th>
+			<th width="10%" scope="col">Junior Basic Schools</th>
+			<th width="10%" scope="col">Senior Secondary Schools</th>
+			<th width="10%" scope="col">Degree Colleges</th>
+			<th width="10%" scope="col">Universities</th>
+			<th width="10%" scope="col">Deemed Universities</th>
+			<th width="10%" scope="col">IIT</th>
+			<th width="10%" scope="col">Preview</th>
+			
+		</tr>
+		</thead>
+		<tbody>
+		<c:forEach items="${list}" var="list">
+			<tr>
+			    <th scope="row">${list.year }</th>
+				<td>${list.district }</td>
+				<td>${list.junior_Basic_Schools }</td>
+				<td>${list.senior_Secondary}</td>
+				<td>${list.degree }</td>
+				<td>${list.universities }</td>
+				<td>${list.deemed_Universities }</td>
+				<td>${list.iit }</td>
+				 <td><button class="btn btn-primary"><a href="/pre/${list.id }" style="color: white;">Preview</a></button></td>
+				<!-- <td><button class="btn btn-danger">Decline</button></td> -->
+				
+			</tr>
+		</c:forEach>
+		</tbody>
+		</table>
+				<button class="btn btn-success"><a href="/edu1Approved" style="color: white;" onclick="func();">Approve</a></button>
+		</div>
         </form>
 
-        <!-- Table 2 (Institution Year) -->
+        <!-- 
         <form action="/institution_year" method="post" id="institution_year" class="input-form">
             <h1 class="heading">Institution Year:</h1>
 
@@ -179,7 +182,7 @@
 
         </form>
 
-        <!-- Table 3 (Polytechnic District) -->
+        Table 3 (Polytechnic District)
         <form action="/polytechnic_district" id="polytechnic_district" method="post" class="input-form">
             <h1 class="heading">Polytechnic District:</h1>
 
@@ -225,7 +228,7 @@
 
         </form>
 
-        <!-- table 4 (Polytechnic Year) -->
+        table 4 (Polytechnic Year)
         <form action="/polytechnic_year" id="polytechnic_year" method="post" class="input-form">
             <h1 class="heading">Polytechnic Year:</h1>
 
@@ -251,7 +254,7 @@
 
         </form>
 
-        <!-- Table 5 (Polytechniciti Admissions District) -->
+        Table 5 (Polytechniciti Admissions District)
         <form action="/polytechniciti_admissions_district" id="polytechniciti_admissions_district" method="post" class="input-form">
             <h1 class="heading">Polytechnic Admissions District:</h1>
 
@@ -297,7 +300,7 @@
 
         </form>
 
-        <!-- Table 6 (Polytechniciti Admissions Year) -->
+        Table 6 (Polytechniciti Admissions Year)
         <form action="/polytechniciti_admissions_year" id="polytechniciti_admissions_year" method="post" class="input-form">
             <h1 class="heading">Polytechnic Admissions Year:</h1>
 
@@ -323,7 +326,7 @@
 
         </form>
 
-        <!-- Table 7 (Pupil Teacher Ratio District) -->
+        Table 7 (Pupil Teacher Ratio District)
         <form action="/pupil_teacher_ratio_district" id="pupil_teacher_ratio_district" method="post" class="input-form">
             <h1 class="heading">Pupil Teacher Ratio District:</h1>
 
@@ -360,7 +363,7 @@
 
         </form>
 
-        <!-- table 8 (Pupil Teacher Ratio Year) -->
+        table 8 (Pupil Teacher Ratio Year)
         <form action="/pupil_teacher_ratio_year" id="pupil_teacher_ratio_year" method="post" class="input-form">
             <h1 class="heading">Pupil Teacher Ratio Year:</h1>
 
@@ -377,7 +380,7 @@
 
         </form>
 
-        <!-- table 9(Students District) -->
+        table 9(Students District)
         <form action="/students_district" id="students_district" method="post" class="input-form">
             <h1 class="heading">Students District:</h1>
 
@@ -420,7 +423,7 @@
 
         </form>
 
-        <!-- table 10(Students Year) -->
+        table 10(Students Year)
         <form action="/students_year" id="students_year" method="post" class="input-form">
             <h1 class="heading">Students Year:</h1>
 
@@ -442,7 +445,7 @@
             <button type="submit" class="submit-button">Submit</button>
 
         </form>
-        </div>
+        </div> -->
 
         <!-- FOOTER SECTION -->
     <footer class="footer-distributed">
@@ -571,8 +574,6 @@
             myFunction();
             document.getElementById("students_year").style.display = "block"
         });
-        
-       
 
 </script>
 

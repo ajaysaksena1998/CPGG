@@ -17,6 +17,14 @@
   <script src="//maxcdn.bootstrapcdn.com/bootstrap/4.1.1/js/bootstrap.min.js"></script>
     <script src="https://kit.fontawesome.com/7fc0c7085f.js" crossorigin="anonymous"></script>
     <link rel="icon" href="favicon.ico">
+    <script>
+    function func(){
+    	alert("User Request Approved")
+    }
+    function func2(){
+    	alert("User Request Declined")
+    }
+    </script>
 </head>
 <body>
 <div class="nav-bar">
@@ -29,10 +37,11 @@
             </a>
         </div>
         <ul class="navbar-list" id="navbarList">
-            <li class="navbar-list-items"><a href="/index.html" class="navbar-link">Home</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/secondpage.html" class="navbar-link">Dasboard</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">Des Uttarakhand</a></li>
-            <li class="navbar-list-items" ><button class="select-language-button">Language</button></li>
+            <li class="navbar-list-items"><a href="/adcover" class="navbar-link">Home</a></li>
+                                    <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
+            
+            <li class="navbar-list-items" ><a target="_blank" href="/entryapp" class="navbar-link">Entry Approval</a></li>
+            <li class="navbar-list-items" ><button class="select-language-button"><a href="/" style="color: white;">Log Out</a></button></li>
         </ul>
     </div>
     <div class="container">
@@ -56,8 +65,8 @@
 				<td>${list.loc_id }</td>
 				<td>${list.name}</td>
 				<td>${list.email }</td>
-				<td><button class="btn btn-success"><a href="/app/${list.id }" style="color: white;">Approve</a></button></td>
-				<td><button class="btn btn-danger">Decline</button></td>
+				<td><button class="btn btn-success"><a href="/app/${list.id }" onclick="func();" style="color: white;">Approve</a></button></td>
+				<td><button class="btn btn-danger"><a href="/dec/${list.id }" onclick="func2();" style="color: white;">Decline</a></button></td>
 				
 			</tr>
 		</c:forEach>

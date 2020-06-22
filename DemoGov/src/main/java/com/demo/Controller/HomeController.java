@@ -45,6 +45,7 @@ import com.demo.Repositories.Education.Edu_Pupil_Teacher_Ratio_Year_Repo;
 import com.demo.Repositories.Education.Edu_Students_Dis_Repo;
 import com.demo.Repositories.Education.Edu_Students_Year_Repo;
 import com.demo.Repositories.Police.PoliceRepo;
+import com.demo.Utilities.AfterOtpMail;
 import com.demo.Utilities.MailItenary;
 
 @Controller
@@ -97,6 +98,9 @@ public class HomeController {
 	
 	@Autowired
 	OtpRepo otpRepo;
+	
+	@Autowired
+	AfterOtpMail afterotp;
 	
 	
 //	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -221,9 +225,12 @@ public class HomeController {
 		Map<String,Integer> data=new LinkedHashMap<>();
 		List<Education_institution_district> list = eduDisRepo.findAll();
 		for (Education_institution_district d : list) 
-		{if(d.getDistrict().equalsIgnoreCase("uttrakhand"))
+		{if(d.getDistrict().equalsIgnoreCase("uttrakhand") || d.getDistrict().equalsIgnoreCase("Garhwal Mandal") || d.getDistrict().equalsIgnoreCase("Kumaun Mandal"))
 			continue;
-		data.put("'"+d.getDistrict().toUpperCase()+"'", d.getDegree());
+		if(d.getApprove()==1) {
+			data.put("'"+d.getDistrict().toUpperCase()+"'", d.getDegree());
+
+		}		
 		}
 		model.addAttribute("data", data);
 		return "educationGraph1.jsp";
@@ -282,6 +289,16 @@ public class HomeController {
 	@RequestMapping("/performregisterationstep1")
 	public ModelAndView performregisterationstep1(User user) {
 		ModelAndView model = new ModelAndView("otppage.jsp");
+		String[] split = user.getLoc_id().split(",");
+		if(user.getLoc_category().equals("Nagar_Nigam")) {
+			user.setLoc_id(split[0]);
+		}
+		else if(user.getLoc_category().equals("Nagar_Palika_Parishad")) {
+			user.setLoc_id(split[1]);
+		}
+		else {
+			user.setLoc_id(split[2]);
+		}
 		user.setLoc_category(user.getLoc_category().toUpperCase());
 		user.setLoc_id(user.getLoc_id().toUpperCase());
 		System.out.println(user);
@@ -333,6 +350,20 @@ try {
 return model;
 	}
 	
+	@RequestMapping("/adminverify")
+	public String adminverify(User user) {
+		if(user.getEmail().equals("admin@gmail.com") && user.getPassword().equals("upes123")) {
+			return "admincover.jsp";
+		}
+		return "SampleLoginForAdmin.jsp";
+	}
+	
+	@RequestMapping("/adminlogin")
+	public String adminlogin(){
+		return "SampleLoginForAdmin.jsp";
+	}
+	
+	
 	@RequestMapping("/otpverified")
 	public String otpverified(OtpGen otpgen) {
 		
@@ -345,6 +376,13 @@ return model;
 			user.setName(otp.getName());
 			user.setPassword(otp.getPassword());
 			user.setApprove(0);
+			
+			String filepath = ITINARY_DIR + user.getEmail() + ".pdf";
+			String email= user.getEmail();
+			afterotp.SendItinary(email, filepath, "Request Sent For Approval", "Thank You for applying. We will notify you once your request will be approved");
+			
+			user.setRole("USER");
+			
 			userRepo.save(user);
 			otpRepo.delete(otp);
 			return "login.jsp";
@@ -360,10 +398,14 @@ return model;
 		}
 	}
 	
-//	@RequestMapping("/logindone", method = RequestMethod.POST)
-//	public String logindone() {
-//		return null;
-//	}
+	@RequestMapping(value= "/logindone", method = RequestMethod.POST)
+	public String logindone(User user) {
+		User email = userRepo.findByEmail(user.getEmail());
+		if(email!=null && email.getPassword().equals(user.getPassword()) && email.getApprove()==1) {
+			return "admindep.jsp";
+		}
+		return "login.jsp";
+	}
 	
 	@RequestMapping("/admin")
 	public String admin() {
@@ -390,7 +432,103 @@ return model;
 //		System.out.println(id);
 		User user = userRepo.findById(id).get();
         user.setApprove(1);
+        
+        String filepath = ITINARY_DIR + user.getEmail() + ".pdf";
+		String email= user.getEmail();
+		afterotp.SendItinary(email, filepath,"Login Request Approved", "Your login request has been approved.");
+        
         userRepo.save(user);
 		return "redirect:/userapp";
 	}
+	
+	@RequestMapping("/dec/{id}")
+	public String dec(@PathVariable("id") Long id, RedirectAttributes red) {
+		User user = userRepo.findById(id).get();
+		if(user!=null) {
+			userRepo.delete(user);
+			String filepath = ITINARY_DIR + user.getEmail() + ".pdf";
+		    String email= user.getEmail();
+			afterotp.SendItinary(email, filepath,"Login Request Declined", "Your login request has been declined. Kindly register again");
+		}
+		return "redirect:/userapp";
+	}
+	
+	@RequestMapping("/entryapp")
+	public ModelAndView entryapp()
+		{
+			ModelAndView model = new ModelAndView("approveEducation1.jsp");
+			List<Education_institution_district> allDistricts=eduDisRepo.findAll();
+			List<Education_institution_district> listeduDisList = new ArrayList<>();
+			for(Education_institution_district eid:allDistricts )
+			{
+				if(eid.getApprove()==0)
+				{
+					listeduDisList.add(eid);
+				}
+			}
+			model.addObject("list", listeduDisList);
+			return model;
+			
+		}
+	
+	@RequestMapping("/edu1Approved")
+	public String approval(RedirectAttributes red) {
+//		System.out.println(id);
+		List<Education_institution_district> findAll = eduDisRepo.findAll();
+		for(Education_institution_district eid:findAll )
+		{
+			if(eid.getApprove()==0)
+			{
+				eid.setApprove(1);
+				eduDisRepo.save(eid);
+			}
+		}
+		
+		return "redirect:/entryapp";
+	}
+	
+	@RequestMapping("/pre/{id}")
+	public ModelAndView pre(@PathVariable("id") int id, RedirectAttributes red) {
+		ModelAndView model = new ModelAndView("/sampleform.jsp");
+		Education_institution_district institution_district = eduDisRepo.findById((long) id).get();
+		model.addObject("value", institution_district);
+		return model;
+	}
+	
+	@RequestMapping(value= "/postsampleForm", method = RequestMethod.POST)
+    public String postsampleForm(Education_institution_district edudis, RedirectAttributes redirect) {
+//		System.out.println(edudis.getId());
+		Education_institution_district institution_district = eduDisRepo.findById(edudis.getId()).get();
+		System.out.println(edudis.getDistrict());
+		institution_district.setIit(edudis.getIit());
+		institution_district.setDeemed_Universities(edudis.getDeemed_Universities());
+		institution_district.setDegree(edudis.getDegree());
+		institution_district.setDistrict(edudis.getDistrict());
+		institution_district.setJunior_Basic_Schools(edudis.getJunior_Basic_Schools());
+		institution_district.setSenior_Secondary(edudis.getSenior_Secondary());
+		institution_district.setUniversities(edudis.getUniversities());
+		institution_district.setYear(edudis.getYear());
+		if(institution_district!=null) {
+			eduDisRepo.save(institution_district);
+		}
+		
+		return "redirect:/entryapp";
+	
+	}
+	
+	@RequestMapping("redirect")
+	public String redirect() {
+		return "secondPage.jsp";
+		}
+	
+	@RequestMapping("red")
+	public String red() {
+		return "admindep.jsp";
+		}
+	
+	@RequestMapping("/adcover")
+	public String adcover() {
+		return "admincover.jsp";
+	}
+	
 }

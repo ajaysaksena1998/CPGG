@@ -30,7 +30,7 @@
         </div>
         <ul class="navbar-list" id="navbarList">
             <li class="navbar-list-items"><a href="/index.html" class="navbar-link">HOME</a></li>
-            <li class="navbar-list-items" ><a target="_blank" href="/department.html" class="navbar-link">DASHBOARD</a></li>
+                        <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
             <li class="navbar-list-items" ><a target="_blank" href="/mainPage.html" class="navbar-link">DES UTTRAKHAND</a></li>
             <!-- <li class="navbar-list-items"><a target="_blank" href="" class="navbar-link">CONTACT US</a></li> -->
             <!-- <li class="navbar-list-items"><a target="_blank" href="" class="navbar-link">FEEDBACK</a></li> -->
