@@ -107,10 +107,10 @@
             <h1 class="heading">Institution District:</h1>
     
             <label for="Year" class="input-labels"><b>Year:</b></label>
-            <input type="text" name="Year" class="input-fields">
+            <input type="text" name="Year" class="input-fields" required="required">
 
             <label for="district" class="input-labels"><b>District:</b></label>
-            <select name="district" id="Dis-select" >
+            <select name="district" id="Dis-select" required="required" >
             <option value="">Please choose an District</option>
             <option value="Uttarakhand">Uttarakhand</option>
             <option value="Chamoli">Chamoli</option>
@@ -130,22 +130,22 @@
             </select>
 
             <label for="Junior_Basic_Schools" class="input-labels"><b>Junior Basic Schools:</b></label>
-            <input type="text" name="Junior_Basic_Schools" class="input-fields">
+            <input type="text" name="Junior_Basic_Schools" class="input-fields" required="required">
 
             <label for="Senior_Secondary" class="input-labels"><b>Senior Secondary:</b></label>
-            <input type="text" name="Senior_Secondary" class="input-fields">
+            <input type="text" name="Senior_Secondary" class="input-fields" required="required">
 
             <label for="Degree" class="input-labels"><b>Degree:</b></label>
-            <input type="text" name="Degree" class="input-fields">
+            <input type="text" name="Degree" class="input-fields" required="required">
 
             <label for="Universities" class="input-labels"><b>Universities:</b></label>
-            <input type="text" name="Universities" class="input-fields">
+            <input type="text" name="Universities" class="input-fields"required="required">
 
             <label for="Deemed_Universities" class="input-labels"><b>Deemed Universities:</b></label>
-            <input type="text" name="Deemed_Universities" class="input-fields">
+            <input type="text" name="Deemed_Universities" class="input-fields"required="required">
 
             <label for="IIT" class="input-labels"><b>IIT:</b></label>
-            <input type="text" name="IIT" class="input-fields">
+            <input type="text" name="IIT" class="input-fields" required="required">
 
             <button type="submit" onclick="func();" class="submit-button">Submit</button>
         </form>

@@ -12,7 +12,7 @@
 <body>
 <!-- partial:index.partial.html -->
 <form action="/adminverify" method="post">
-  <h2>Sign In</h2>
+  <h2> Administrator Login</h2>
 		<p>
 			<label for="Email" class="floatLabel">Email</label>
 			<input id="Email" name="email" type="text">

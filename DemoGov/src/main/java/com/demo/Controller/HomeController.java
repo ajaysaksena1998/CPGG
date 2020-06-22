@@ -131,9 +131,30 @@ public class HomeController {
 	
 	@RequestMapping(value="/institution_district", method = RequestMethod.POST)
 	public String institution_year(Education_institution_district edu) {
-		edu.setLoc_category(2);
-		edu.setLoc_id(2);
-		eduDisRepo.save(edu);
+		
+		
+		
+		Education_institution_district institution_district = eduDisRepo.findByDistrict(edu.getDistrict());
+		
+		if(institution_district!=null) {
+			
+		
+		institution_district.setApprove(0);
+		institution_district.setDeemed_Universities(edu.getDeemed_Universities());
+		institution_district.setDegree(edu.getDeemed_Universities());
+		institution_district.setIit(edu.getIit());
+		institution_district.setJunior_Basic_Schools(edu.getJunior_Basic_Schools());
+		institution_district.setSenior_Secondary(edu.getSenior_Secondary());
+		institution_district.setUniversities(edu.getUniversities());
+		institution_district.setYear(edu.getYear());
+		institution_district.setLoc_category(2);
+		institution_district.setLoc_id(2);
+		eduDisRepo.save(institution_district);
+
+		}
+		else {
+			eduDisRepo.save(edu);
+		}
 		return "education.jsp";
 	}
 	
