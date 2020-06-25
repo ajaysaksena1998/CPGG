@@ -29,7 +29,7 @@
             <input type="text" id="Year" name="id" value="${value.id }" class="input-fields" readonly>
             </div>
             </div>
-            <div class="row">
+           <div class="row">
            
             <div class="col-md-12">
              <label for="Year" class="input-labels"><b>Location Category</b></label>
@@ -39,7 +39,7 @@
             <div class="col-md-12">
               <label for="Year" class="input-labels"><b>L. Id</b></label>
             <input type="text" id="Year" name="loc_id" value="${value.loc_id }" class="input-fields" readonly>
-    </div>
+    </div> 
     </div>
             <label for="Year" class="input-labels"><b>Year:</b></label>
             <input type="text" id="Year" name="year" value="${value.year }" class="input-fields">

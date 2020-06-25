@@ -28,6 +28,9 @@
 		<p>	
 			<button formaction="/plregister" value="Sign Up">Sign Up</button>
 		</p>
+		<p>	
+			<button formaction="/fpass" value="Sign Up">Forgot Password</button>
+		</p>
 	</form>
 	
 <!-- partial -->

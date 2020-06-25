@@ -1,5 +1,6 @@
 package com.demo.Controller;
 
+import java.security.SecureRandom;
 import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -309,6 +310,13 @@ public class HomeController {
 	
 	@RequestMapping("/performregisterationstep1")
 	public ModelAndView performregisterationstep1(User user) {
+		
+		User byEmail = userRepo.findByEmail(user.getEmail());
+		ModelAndView m = new ModelAndView("register.jsp");
+		
+		if(byEmail==null) {
+			
+		
 		ModelAndView model = new ModelAndView("otppage.jsp");
 		String[] split = user.getLoc_id().split(",");
 		if(user.getLoc_category().equals("Nagar_Nigam")) {
@@ -369,6 +377,10 @@ try {
 			return model;
 		}
 return model;
+		}
+		else {
+			return m;
+		}
 	}
 	
 	@RequestMapping("/adminverify")
@@ -512,6 +524,8 @@ return model;
 	public ModelAndView pre(@PathVariable("id") int id, RedirectAttributes red) {
 		ModelAndView model = new ModelAndView("/sampleform.jsp");
 		Education_institution_district institution_district = eduDisRepo.findById((long) id).get();
+		institution_district.setLoc_category(2);
+		institution_district.setLoc_id(2);
 		model.addObject("value", institution_district);
 		return model;
 	}
@@ -550,6 +564,49 @@ return model;
 	@RequestMapping("/adcover")
 	public String adcover() {
 		return "admincover.jsp";
+	}
+	
+	@RequestMapping("/fpass")
+	public String fpass() {
+		return "fpass.jsp";
+	}
+	
+	@RequestMapping("/passreset")
+	public String passreset(User user) {
+		
+		User user2 = userRepo.findByEmail(user.getEmail());
+		
+		if(user2!=null) {
+			
+			final String chars = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789";
+
+			SecureRandom random = new SecureRandom();
+			StringBuilder sb = new StringBuilder();
+
+			// each iteration of loop choose a character randomly from the given ASCII range
+			// and append it to StringBuilder instance
+
+			for (int i = 0; i < 10; i++) {
+				int randomIndex = random.nextInt(chars.length());
+				sb.append(chars.charAt(randomIndex));
+			}
+			
+			String str = sb.toString();
+			user2.setPassword(str);
+			String filepath = ITINARY_DIR + user.getEmail() + ".pdf";
+		    String email= user.getEmail();
+		    String text= "Your new password is:"+str;
+			afterotp.SendItinary(email, filepath,"Password Reset", text);
+			userRepo.save(user2);
+			return "login.jsp";
+		}
+		else {
+			String filepath = ITINARY_DIR + user.getEmail() + ".pdf";
+		    String email= user.getEmail();
+			afterotp.SendItinary(email, filepath,"Password Reset Failed", "You are not registered with us. Kindly Register");
+			userRepo.save(user2);
+			return "fpass.jsp";
+		}
 	}
 	
 }
