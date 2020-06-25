@@ -32,6 +32,7 @@ import com.demo.Entities.Education.Education_students_district;
 import com.demo.Entities.Education.Education_students_year;
 import com.demo.Entities.Police.pc_police_stations_registered_crimes_year;
 import com.demo.Entities.Registration.User;
+import com.demo.FileService.SpringFileService;
 import com.demo.Repositories.AgricultureTable1Repo;
 import com.demo.Repositories.OtpRepo;
 import com.demo.Repositories.UserRepo;
@@ -102,6 +103,9 @@ public class HomeController {
 	
 	@Autowired
 	AfterOtpMail afterotp;
+	
+	@Autowired
+	SpringFileService fileService;
 	
 	
 //	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -244,7 +248,7 @@ public class HomeController {
 	@GetMapping("/displayeducationGraph1")
 	public String educationDept(Model model)
 	{
-		Map<String,Integer> data=new LinkedHashMap<>();
+		Map<String,Double> data=new LinkedHashMap<>();
 		List<Education_institution_district> list = eduDisRepo.findAll();
 		for (Education_institution_district d : list) 
 		{if(d.getDistrict().equalsIgnoreCase("uttrakhand") || d.getDistrict().equalsIgnoreCase("Garhwal Mandal") || d.getDistrict().equalsIgnoreCase("Kumaun Mandal"))
@@ -607,6 +611,20 @@ return model;
 			userRepo.save(user2);
 			return "fpass.jsp";
 		}
+	}
+	
+	@RequestMapping(value="/uploadFile", method = RequestMethod.POST)
+	public String uploadFile(Education_institution_district edu, RedirectAttributes redirect) {
+		System.out.println(edu.getFile());
+
+		boolean isFlag= fileService.saveDataFromFile(edu.getFile());
+		if(isFlag) {
+			redirect.addFlashAttribute("success", "File Uploaded Successfully");
+		}
+		else {
+			redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
+		}
+		return "education.jsp";
 	}
 	
 }
