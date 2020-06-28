@@ -716,7 +716,24 @@ return model;
 		else if(agri.getYear().equals("Transport")) {
 			return "redirect:/transportapp";
 		}
+		else if(agri.getYear().equals("Consumer")) {
+			return "redirect:/consumerapp";
+		}
 		return null;
+	}
+	
+	@RequestMapping("/consumerapp")
+	public ModelAndView consumerapp() {
+		ModelAndView model = new ModelAndView("approveConsumer.jsp");
+		List<District_cpi> all = cpiRepo.findAll();
+		List<District_cpi> samplelist = new ArrayList<>();
+		for(District_cpi cpi: all) {
+			if(cpi.getApprove()==0) {
+				samplelist.add(cpi);
+			}
+		}
+		model.addObject("list", samplelist);
+		return model;
 	}
 	
 	@RequestMapping("/entryappPolice")
@@ -952,6 +969,40 @@ return model;
 			}
 		}
 		return "redirect:/transportapp";
+	}
+	
+	
+	@RequestMapping("/previewconsumer/{id}")
+	public ModelAndView previewConsumer(@PathVariable("id") int id, RedirectAttributes red) {
+		ModelAndView model = new ModelAndView("/sampleConsumerForm.jsp");
+		District_cpi cpi = cpiRepo.findById((long) id).get();
+		cpi.setLoc_category(2);
+		cpi.setLoc_id(2);
+		model.addObject("value", cpi);
+		return model;
+	}
+	
+	@RequestMapping("/postconsumer")
+	public String postconsumer(District_cpi cpi, RedirectAttributes redirect) {
+		District_cpi district_cpi = cpiRepo.findById(cpi.getId()).get();
+		district_cpi.setDistrict(cpi.getDistrict());
+		district_cpi.setInd(cpi.getInd());
+		cpiRepo.save(district_cpi);
+		return "redirect:/consumerapp";
+	}
+	
+	
+	@RequestMapping("/consumerapproved")
+	public String consumerapproved(RedirectAttributes red) {
+		
+		List<District_cpi> all = cpiRepo.findAll();
+		for(District_cpi d : all) {
+			if(d.getApprove()==0) {
+				d.setApprove(1);
+				cpiRepo.save(d);
+			}
+		}
+		return "redirect:/consumerapp";
 	}
 	
 }
