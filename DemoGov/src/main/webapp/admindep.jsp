@@ -42,7 +42,7 @@
                 <div class="options-container">
                     <div class="option">
                         <input type="radio" class="radio" id="Dep01" name="category" />
-                        <label class="lbl" for="Dep01">Agriculture</label>
+                        <label class="lbl" for="Dep01">Consumer Price Index</label>
                     </div>
                     <div class="option">
                         <input type="radio" class="radio" id="Dep02" name="category" />
@@ -50,11 +50,11 @@
                     </div>
                     <div class="option">
                         <input type="radio" class="radio" id="Dep03" name="category" />
-                        <label class="lbl" for="Dep03">Population</label>
+                        <label class="lbl" for="Dep03">Police & Crimes</label>
                     </div>
                     <div class="option">
                         <input type="radio" class="radio" id="Dep04" name="category" />
-                        <label class="lbl" for="Dep04">Forest</label>
+                        <label class="lbl" for="Dep04">Transportation & Communication</label>
                     </div>
                     <div class="option">
                         <input type="radio" class="radio" id="Dep05" name="category" />
@@ -182,11 +182,18 @@
         }
 
         document.getElementById("Dep01").addEventListener("click", () => {
-            window.location = "./agriculture.jsp";
+            window.location = "./cpiact";
         });
         document.getElementById("Dep02").addEventListener("click", () => {
-            window.location = "./education.jsp";
+            window.location = "./education";
         });
+        document.getElementById("Dep03").addEventListener("click", () => {
+            window.location = "/police";
+        });
+        document.getElementById("Dep04").addEventListener("click", () => {
+            window.location = "/tac";
+        });
+        
 
         // Global Options
     Chart.defaults.global.defaultFontFamily = 'Lato';

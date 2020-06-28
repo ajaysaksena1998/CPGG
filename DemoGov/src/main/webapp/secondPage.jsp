@@ -56,7 +56,7 @@
             </div>
             
             <ul class="side-navigation-list">
-                <li class="side-navigation-list-items"><a href="#population">Population</a></li>
+                <li class="side-navigation-list-items"><a href="#population">Police & Crimes</a></li>
                 <li class="side-navigation-list-items"><a href="#education">Education</a></li>
                 <li class="side-navigation-list-items"><a href="#industry">Industry & mining</a></li>
                 <li class="side-navigation-list-items"><a href="#health">Health</a></li>
@@ -102,7 +102,7 @@
 
         </div>
         <div class="card" id="population">
-            <h3 class="card-title" >Population</h3>
+            <h3 class="card-title" >Police & Crimes</h3>
             <p class="card-description">Population simply means number of people, living at a particular area (country/region) at a particular. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn1">Read More</a>
             <div id="myModal1" class="modal">
@@ -115,7 +115,7 @@
             <div class="container3">
             <canvas id="pie-chart"></canvas>
             </div>
-            <a href="/department.html" class="view-reports-button">VIEW REPORTS</a>
+            <a href="/departmentPoliceCrime" class="view-reports-button">VIEW REPORTS</a>
         </div>
         <div class="card" id="education">
             <h3 class="card-title" >Education</h3>

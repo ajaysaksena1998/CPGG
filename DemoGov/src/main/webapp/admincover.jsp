@@ -32,7 +32,7 @@
             <li class="navbar-list-items"><a href="/login" class="navbar-link">Home</a></li>
                         <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
             <li class="navbar-list-items"><a href="/userapp" class="navbar-link">User Approval</a></li>
-            <li class="navbar-list-items"><a href="/entryapp" class="navbar-link">Entry Approval</a></li>
+            <li class="navbar-list-items"><a href="/initials" class="navbar-link">Entry Approval</a></li>
             <li class="navbar-list-items" ><a class="select-language-button" style="text-decoration: none;" href="/">Log Out</a></li>
         </ul>
     </div>

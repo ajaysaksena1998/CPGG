@@ -5,7 +5,6 @@ import java.util.ArrayList;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
-import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -32,7 +31,12 @@ import com.demo.Entities.Education.Education_students_district;
 import com.demo.Entities.Education.Education_students_year;
 import com.demo.Entities.Police.pc_police_stations_registered_crimes_year;
 import com.demo.Entities.Registration.User;
+import com.demo.Entities.Tac.Transport;
+import com.demo.Entities.cpi.District_cpi;
 import com.demo.FileService.SpringFileService;
+import com.demo.FileService.SpringPoliceService;
+import com.demo.FileService.SpringTransService;
+import com.demo.FileService.SpringcpiService;
 import com.demo.Repositories.AgricultureTable1Repo;
 import com.demo.Repositories.OtpRepo;
 import com.demo.Repositories.UserRepo;
@@ -47,6 +51,8 @@ import com.demo.Repositories.Education.Edu_Pupil_Teacher_Ratio_Year_Repo;
 import com.demo.Repositories.Education.Edu_Students_Dis_Repo;
 import com.demo.Repositories.Education.Edu_Students_Year_Repo;
 import com.demo.Repositories.Police.PoliceRepo;
+import com.demo.Repositories.Tac.TransportRepo;
+import com.demo.Repositories.cpi.CpiRepo;
 import com.demo.Utilities.AfterOtpMail;
 import com.demo.Utilities.MailItenary;
 
@@ -106,6 +112,21 @@ public class HomeController {
 	
 	@Autowired
 	SpringFileService fileService;
+	
+	@Autowired
+	SpringPoliceService sprfileservice;
+	
+	@Autowired
+	CpiRepo cpiRepo;
+	
+	@Autowired
+	SpringcpiService cpiSer;
+	
+	@Autowired
+	TransportRepo transRepo;
+	
+	@Autowired
+	SpringTransService transService;
 	
 	
 //	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -230,11 +251,13 @@ public class HomeController {
 	@GetMapping("/displaypoliceGraph1")
 	public String barGraph2(Model model)
 	{
-		Map<String,Integer> ruralMap=new LinkedHashMap<>();
-		Map<String,Integer> urbanMap=new LinkedHashMap<>();
-		Map<String,Integer> totalMap=new LinkedHashMap<>();		
+		Map<String,Double> ruralMap=new LinkedHashMap<>();
+		Map<String,Double> urbanMap=new LinkedHashMap<>();
+		Map<String,Double> totalMap=new LinkedHashMap<>();		
 		List<pc_police_stations_registered_crimes_year> list = dpsRepo.findAll();
 		for (pc_police_stations_registered_crimes_year d : list) {
+			if(d.getApprove()==0)
+				continue;
 			ruralMap.put("'"+d.getYear().toUpperCase()+"'", d.getPolicestations_rural());
 			urbanMap.put("'"+d.getYear().toUpperCase()+"'", d.getPolicestations_urban());
 			totalMap.put("'"+d.getYear().toUpperCase()+"'", d.getPolicestations_total());
@@ -615,7 +638,6 @@ return model;
 	
 	@RequestMapping(value="/uploadFile", method = RequestMethod.POST)
 	public String uploadFile(Education_institution_district edu, RedirectAttributes redirect) {
-		System.out.println(edu.getFile());
 
 		boolean isFlag= fileService.saveDataFromFile(edu.getFile());
 		if(isFlag) {
@@ -625,6 +647,311 @@ return model;
 			redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
 		}
 		return "education.jsp";
+	}
+	
+	@RequestMapping("/education")
+	public String education() {
+		return "education.jsp";
+	}
+	
+	@RequestMapping("/police")
+	public String police() {
+		return "policeCover.jsp";
+	}
+	
+	@RequestMapping(value="/police_year", method = RequestMethod.POST)
+	public String police_year(pc_police_stations_registered_crimes_year policeCrimes) {
+		
+		pc_police_stations_registered_crimes_year byYear = dpsRepo.findByYear(policeCrimes.getYear());
+		
+		if(byYear!=null) {
+			byYear.setApprove(0);
+			byYear.setHarrassment_of_sc_st(policeCrimes.getHarrassment_of_sc_st());
+			byYear.setKidnapping(policeCrimes.getKidnapping());
+			byYear.setMurder(policeCrimes.getMurder());
+			byYear.setOther_crimes(policeCrimes.getOther_crimes());
+			byYear.setPolicestations_rural(policeCrimes.getPolicestations_rural());
+			byYear.setPolicestations_urban(policeCrimes.getPolicestations_urban());
+			byYear.setRiots(policeCrimes.getRiots());
+			byYear.setRobbery(policeCrimes.getRobbery());
+			byYear.setLoc_category(2);
+			byYear.setLoc_id(2);
+			byYear.setTheft(policeCrimes.getTheft());
+			dpsRepo.save(byYear);
+		}
+		else {
+			policeCrimes.setLoc_category(2);
+			policeCrimes.setLoc_id(2);
+			dpsRepo.save(policeCrimes);
+		}
+		return "policeCover.jsp";
+	}
+	
+	@RequestMapping(value="/policefile", method= RequestMethod.POST)
+	public String policefile(pc_police_stations_registered_crimes_year pc, RedirectAttributes redirect) {
+		boolean isFlag= sprfileservice.saveDataFromFile(pc.getFile());
+		
+			if(isFlag) {
+				redirect.addFlashAttribute("success", "File Uploaded Successfully");
+			}
+			else {
+				redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
+			}
+			return "policeCover.jsp";
+		}
+	
+	@RequestMapping("/initials")
+	public String initials() {
+		return "initial.jsp";
+	}
+	
+	@RequestMapping(value= "/sendData", method= RequestMethod.POST)
+	public String sendData(AgricultureTable1 agri, RedirectAttributes redirect) {
+		if(agri.getYear().equals("Education")) {
+			return "redirect:/entryapp";
+		}
+		else if(agri.getYear().equals("Police")) {
+			return "redirect:/entryappPolice";
+		}
+		else if(agri.getYear().equals("Transport")) {
+			return "redirect:/transportapp";
+		}
+		return null;
+	}
+	
+	@RequestMapping("/entryappPolice")
+	public ModelAndView entryappPolice()
+		{
+			ModelAndView model = new ModelAndView("approvePolice.jsp");
+			List<pc_police_stations_registered_crimes_year> allPoliceDistricts=dpsRepo.findAll();
+			List<pc_police_stations_registered_crimes_year> listedPoliceDisList = new ArrayList<>();
+			for(pc_police_stations_registered_crimes_year pid:allPoliceDistricts )
+			{
+				if(pid.getApprove()==0)
+				{
+					listedPoliceDisList.add(pid);
+				}
+			}
+			model.addObject("list", listedPoliceDisList);
+			return model;
+		}
+	
+	
+	@RequestMapping("/previewPolice1/{id}")
+	public ModelAndView previewPolice1(@PathVariable("id") int id, RedirectAttributes red) {
+		ModelAndView model = new ModelAndView("/policeApprovalForm.jsp");
+		pc_police_stations_registered_crimes_year police_year = dpsRepo.findById((long) id).get();
+		police_year.setLoc_category(2);
+		police_year.setLoc_id(2);
+		model.addObject("value", police_year);
+		return model;
+	}
+	
+	@RequestMapping(value= "/postPoliceForm", method = RequestMethod.POST)
+    public String postPoliceForm(pc_police_stations_registered_crimes_year police, RedirectAttributes redirect) {
+//		System.out.println(edudis.getId());
+		pc_police_stations_registered_crimes_year police_year = dpsRepo.findById(police.getId()).get();
+		//System.out.println(edudis.getDistrict());
+		if(police_year!=null)
+		{
+		//police_year.setApprove(1);
+		police_year.setLoc_category(2);
+		police_year.setLoc_id(2);
+		police_year.setHarrassment_of_sc_st(police.getHarrassment_of_sc_st());
+		police_year.setKidnapping(police.getKidnapping());
+		police_year.setMurder(police.getMurder());
+		police_year.setOther_crimes(police.getOther_crimes());
+		police_year.setPolicestations_rural(police.getPolicestations_rural());
+		police_year.setPolicestations_total(police.getPolicestations_total());
+		police_year.setPolicestations_urban(police.getPolicestations_urban());
+		police_year.setTheft(police.getTheft());
+		police_year.setRobbery(police.getRobbery());
+		police_year.setYear(police.getYear());
+		
+			dpsRepo.save(police_year);
+		}
+		else
+		{
+			dpsRepo.save(police);
+		}
+		
+		return "redirect:/entryappPolice";
+	
+	}
+	
+	
+	@RequestMapping("/policeApproved")
+	public String policeapproval(RedirectAttributes red) {
+//		System.out.println(id);
+		List<pc_police_stations_registered_crimes_year> findAll = dpsRepo.findAll();
+		for(pc_police_stations_registered_crimes_year eid:findAll )
+		{
+			if(eid.getApprove()==0)
+			{
+				eid.setApprove(1);
+				dpsRepo.save(eid);
+			}
+		}
+		
+		return "redirect:/entryappPolice";
+	}
+	
+	@RequestMapping("/cpiact")
+	public String cpiact() {
+		return "Consumer.jsp";
+	}
+	
+	
+	@RequestMapping(value= "/cpivalues", method=RequestMethod.POST)
+	public String cpivalues(District_cpi cpi) {
+		District_cpi byDistrict = cpiRepo.findByDistrict(cpi.getDistrict());
+		if(byDistrict!=null) {
+			byDistrict.setLoc_category(2);
+			byDistrict.setLoc_id(2);
+			byDistrict.setInd(cpi.getInd());
+			byDistrict.setApprove(0);
+			cpiRepo.save(byDistrict);
+		}
+		else {
+			System.out.println(cpi);
+			cpi.setLoc_category(2);
+			cpi.setLoc_id(2);
+			cpi.setApprove(0);
+			cpiRepo.save(cpi);
+		}
+		return "Consumer.jsp";
+	}
+	
+	
+	@RequestMapping(value= "/uploadcpi", method=RequestMethod.POST)
+	public String uploadcpi(District_cpi cpi, RedirectAttributes redirect) {
+	
+		boolean isFlag= cpiSer.saveDataFromFile(cpi.getFile());
+		if(isFlag) {
+			redirect.addFlashAttribute("success", "File Uploaded Successfully");
+		}
+		else {
+			redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
+		}
+		return "Consumer.jsp";
+		
+	}
+	
+	@RequestMapping("/tac")
+	public String tac() {
+		return "TransportComm.jsp";
+	}
+	
+	@RequestMapping(value= "/transvalues", method=RequestMethod.POST)
+	public String transvalues(Transport trans) {
+		Transport byYear = transRepo.findByYear(trans.getYear());
+		if(byYear!=null) {
+			byYear.setLoc_category(2);
+			byYear.setLoc_id(2);
+			byYear.setApprove(0);
+			byYear.setBuses(trans.getBuses());
+			byYear.setDeliver_recovery_van(trans.getDeliver_recovery_van());
+			byYear.setFour_wheelers(trans.getFour_wheelers());
+			byYear.setHeavy_vehicles(trans.getHeavy_vehicles());
+			byYear.setMaxi_taxi_cab(trans.getMaxi_taxi_cab());
+			byYear.setOthers(trans.getOthers());
+			byYear.setThree_wheelers(trans.getThree_wheelers());
+			double total = trans.getHeavy_vehicles()+trans.getDeliver_recovery_van()+trans.getBuses()+trans.getMaxi_taxi_cab()+trans.getThree_wheelers()+trans.getFour_wheelers()+trans.getTwo_wheelers()+trans.getOthers();
+			byYear.setTotal(total);
+			byYear.setTwo_wheelers(trans.getTwo_wheelers());
+			transRepo.save(byYear);
+		}
+		else {
+			trans.setLoc_category(2);
+			trans.setLoc_id(2);
+			trans.setApprove(0);
+			double total = trans.getHeavy_vehicles()+trans.getDeliver_recovery_van()+trans.getBuses()+trans.getMaxi_taxi_cab()+trans.getThree_wheelers()+trans.getFour_wheelers()+trans.getTwo_wheelers()+trans.getOthers();
+			trans.setTotal(total);
+			transRepo.save(trans);
+		}
+		return "TransportComm.jsp";
+	}
+	
+	@RequestMapping(value= "/uploadtrans", method= RequestMethod.POST)
+	public String uploadtrans(Transport tran, RedirectAttributes redirect) {
+		System.out.println("Hi");
+		boolean isFlag= transService.saveDataFromFile(tran.getFile());
+		if(isFlag) {
+			redirect.addFlashAttribute("success", "File Uploaded Successfully");
+		}
+		else {
+			redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
+		}
+		return "TransportComm.jsp";
+	}
+	
+	
+	@RequestMapping("/transportapp")
+	public ModelAndView transportapp()
+	{
+		ModelAndView model = new ModelAndView("approveTransport.jsp");
+		List<Transport> all = transRepo.findAll();
+		List<Transport> arrList = new ArrayList<>();
+		for(Transport t : all) {
+			if(t.getApprove()==0) {
+				arrList.add(t);
+			}
+		}
+		model.addObject("list", arrList);
+		return model;
+	}
+	
+	
+	@RequestMapping("/previewtransport/{id}")
+	public ModelAndView previewTransport(@PathVariable("id") int id, RedirectAttributes red) {
+		ModelAndView model = new ModelAndView("/sampleTransport.jsp");
+		Transport transport = transRepo.findById((long) id).get();
+		transport.setLoc_category(2);
+		transport.setLoc_id(2);
+		model.addObject("value", transport);
+		return model;
+	}
+	
+	
+	@RequestMapping(value= "/posttransport", method= RequestMethod.POST)
+	public String posttransport(Transport trans, RedirectAttributes redirect) {
+		
+		Transport transport = transRepo.findByYear(trans.getYear());
+		
+		if(transport!=null) {
+			transport.setLoc_category(2);
+			transport.setLoc_id(2);
+			transport.setApprove(0);
+			transport.setBuses(trans.getBuses());
+			transport.setDeliver_recovery_van(trans.getDeliver_recovery_van());
+			transport.setFour_wheelers(trans.getFour_wheelers());
+			transport.setHeavy_vehicles(trans.getHeavy_vehicles());
+			transport.setMaxi_taxi_cab(trans.getMaxi_taxi_cab());
+			transport.setOthers(trans.getOthers());
+			transport.setThree_wheelers(trans.getThree_wheelers());
+			transport.setTotal(trans.getBuses()+trans.getDeliver_recovery_van()+trans.getFour_wheelers()+trans.getHeavy_vehicles()+trans.getMaxi_taxi_cab()+trans.getOthers()+trans.getThree_wheelers()+trans.getTwo_wheelers());
+			transport.setTwo_wheelers(trans.getTwo_wheelers());
+			transport.setYear(trans.getYear());
+			transRepo.save(transport);
+		}
+		else {
+			trans.setTotal(trans.getBuses()+trans.getDeliver_recovery_van()+trans.getFour_wheelers()+trans.getHeavy_vehicles()+trans.getMaxi_taxi_cab()+trans.getOthers()+trans.getThree_wheelers()+trans.getTwo_wheelers());
+			transRepo.save(trans);
+		}
+		return "redirect:/transportapp";
+	}
+	
+	@RequestMapping("/transportapproved")
+	public String transportapproved(RedirectAttributes red) {
+		
+		List<Transport> all = transRepo.findAll();
+		for(Transport t : all) {
+			if(t.getApprove()==0) {
+				t.setApprove(1);
+				transRepo.save(t);
+			}
+		}
+		return "redirect:/transportapp";
 	}
 	
 }

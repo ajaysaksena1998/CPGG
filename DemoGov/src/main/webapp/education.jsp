@@ -62,7 +62,7 @@
 	</div>
 
 	<div class="midsection">
-		<h1 class="department-midsection-text">Departments: Education</h1>
+		<h1 class="department-midsection-text">Department: Education</h1>
 
 		<div class="container">
 			<h2>Choose from Table:</h2>
@@ -612,8 +612,6 @@
             myFunction();
             document.getElementById("students_year").style.display = "block"
         });
-        
-       
 
 </script>
 

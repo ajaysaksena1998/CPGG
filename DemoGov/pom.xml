@@ -15,7 +15,6 @@
 	<packaging>jar</packaging>
 	<name>DemoGov</name>
 	<description>Demo Test</description>
-
 	<properties>
 		<java.version>1.8</java.version>
 	</properties>

@@ -4,27 +4,49 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.Table;
+import javax.persistence.Transient;
+
+import org.springframework.web.multipart.MultipartFile;
 
 @Entity
+@Table(name="pc_police_stations_registered_crimes_year")
 public class pc_police_stations_registered_crimes_year {
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
-	private String loc_category;
+	private int loc_category;
 	private int loc_id;
 	private String year;
-	private int policestations_rural;
-	private int policestations_urban;
-	private int policestations_total;
-	private int robbery;
-	private int murder;
-	private int kidnapping;
-	private int theft;
-	private int riots;
-	private int harrassment_of_sc_st;
-	private int other_crimes;
+	private double policestations_rural;
+	private double policestations_urban;
+	private double policestations_total;
+	private double robbery;
+	private double murder;
+	private double kidnapping;
+	private double theft;
+	private double riots;
+	private double harrassment_of_sc_st;
+	private double other_crimes;
 	
+	@Transient
+	MultipartFile file;
+	
+	public MultipartFile getFile() {
+		return file;
+	}
+	public void setFile(MultipartFile file) {
+		this.file = file;
+	}
+	private int approve;
+	
+	public int getApprove() {
+		return approve;
+	}
+	public void setApprove(int approve) {
+		this.approve = approve;
+	}
 	public Long getId() {
 		return id;
 	}
@@ -43,76 +65,75 @@ public class pc_police_stations_registered_crimes_year {
 	public void setYear(String year) {
 		this.year = year;
 	}
-	public int getPolicestations_rural() {
+	
+	public int getLoc_category() {
+		return loc_category;
+	}
+	public void setLoc_category(int loc_category) {
+		this.loc_category = loc_category;
+	}
+	public double getPolicestations_rural() {
 		return policestations_rural;
 	}
-	public void setPolicestations_rural(int policestations_rural) {
+	public void setPolicestations_rural(double policestations_rural) {
 		this.policestations_rural = policestations_rural;
 	}
-	public int getPolicestations_urban() {
+	public double getPolicestations_urban() {
 		return policestations_urban;
 	}
-	public void setPolicestations_urban(int policestations_urban) {
+	public void setPolicestations_urban(double policestations_urban) {
 		this.policestations_urban = policestations_urban;
 	}
-	public int getPolicestations_total() {
+	public double getPolicestations_total() {
 		return policestations_total;
 	}
-	public void setPolicestations_total(int policestations_total) {
+	public void setPolicestations_total(double policestations_total) {
 		this.policestations_total = policestations_total;
 	}
-	public int getRobbery() {
+	public double getRobbery() {
 		return robbery;
 	}
-	public void setRobbery(int robbery) {
+	public void setRobbery(double robbery) {
 		this.robbery = robbery;
 	}
-	public int getMurder() {
+	public double getMurder() {
 		return murder;
 	}
-	public void setMurder(int murder) {
+	public void setMurder(double murder) {
 		this.murder = murder;
 	}
-	public int getKidnapping() {
+	public double getKidnapping() {
 		return kidnapping;
 	}
-	public void setKidnapping(int kidnapping) {
+	public void setKidnapping(double kidnapping) {
 		this.kidnapping = kidnapping;
 	}
-	public int getTheft() {
+	public double getTheft() {
 		return theft;
 	}
-	public void setTheft(int theft) {
+	public void setTheft(double theft) {
 		this.theft = theft;
 	}
-	public int getRiots() {
+	public double getRiots() {
 		return riots;
 	}
-	public void setRiots(int riots) {
+	public void setRiots(double riots) {
 		this.riots = riots;
 	}
-	public int getHarrassment_of_sc_st() {
+	public double getHarrassment_of_sc_st() {
 		return harrassment_of_sc_st;
 	}
-	public void setHarrassment_of_sc_st(int harrassment_of_sc_st) {
+	public void setHarrassment_of_sc_st(double harrassment_of_sc_st) {
 		this.harrassment_of_sc_st = harrassment_of_sc_st;
-	}
-	@Override
-	public String toString() {
-		return "pc_police_stations_registered_crimes_year [id=" + id + ", loc_category=" + loc_category + ", loc_id="
-				+ loc_id + ", year=" + year + ", policestations_rural=" + policestations_rural
-				+ ", policestations_urban=" + policestations_urban + ", policestations_total=" + policestations_total
-				+ ", robbery=" + robbery + ", murder=" + murder + ", kidnapping=" + kidnapping + ", theft=" + theft
-				+ ", riots=" + riots + ", harrassment_of_sc_st=" + harrassment_of_sc_st + ", other_crimes="
-				+ other_crimes + "]";
 	}
 	public pc_police_stations_registered_crimes_year() {
 		super();
 		// TODO Auto-generated constructor stub
 	}
-	public pc_police_stations_registered_crimes_year(Long id, String loc_category, int loc_id, String year,
-			int policestations_rural, int policestations_urban, int policestations_total, int robbery, int murder,
-			int kidnapping, int theft, int riots, int harrassment_of_sc_st, int other_crimes) {
+	public pc_police_stations_registered_crimes_year(Long id, int loc_category, int loc_id, String year,
+			double policestations_rural, double policestations_urban, double policestations_total, double robbery,
+			double murder, double kidnapping, double theft, double riots, double harrassment_of_sc_st,
+			double other_crimes, MultipartFile file, int approve) {
 		super();
 		this.id = id;
 		this.loc_category = loc_category;
@@ -128,18 +149,24 @@ public class pc_police_stations_registered_crimes_year {
 		this.riots = riots;
 		this.harrassment_of_sc_st = harrassment_of_sc_st;
 		this.other_crimes = other_crimes;
+		this.file = file;
+		this.approve = approve;
 	}
-	public String getLoc_category() {
-		return loc_category;
+	@Override
+	public String toString() {
+		return "pc_police_stations_registered_crimes_year [id=" + id + ", loc_category=" + loc_category + ", loc_id="
+				+ loc_id + ", year=" + year + ", policestations_rural=" + policestations_rural
+				+ ", policestations_urban=" + policestations_urban + ", policestations_total=" + policestations_total
+				+ ", robbery=" + robbery + ", murder=" + murder + ", kidnapping=" + kidnapping + ", theft=" + theft
+				+ ", riots=" + riots + ", harrassment_of_sc_st=" + harrassment_of_sc_st + ", other_crimes="
+				+ other_crimes + ", file=" + file + ", approve=" + approve + "]";
 	}
-	public void setLoc_category(String loc_category) {
-		this.loc_category = loc_category;
-	}
-	public int getOther_crimes() {
+	public double getOther_crimes() {
 		return other_crimes;
 	}
-	public void setOther_crimes(int other_crimes) {
+	public void setOther_crimes(double other_crimes) {
 		this.other_crimes = other_crimes;
 	}
+	
 }
 
