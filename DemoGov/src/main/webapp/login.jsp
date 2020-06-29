@@ -6,7 +6,7 @@
 <head>
   <meta charset="UTF-8">
   <title>Sign In</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/style1.css">
 
 </head>
 <body>
@@ -15,11 +15,11 @@
   <h2>Sign In</h2>
 		<p>
 			<label for="Email" class="floatLabel">Email</label>
-			<input id="Email" name="email" type="text">
+			<input id="Email" name="email" type="text" placeholder="Enter Email"]>
 		</p>
 		<p>
 			<label for="password" class="floatLabel">Password</label>
-			<input id="password" name="password" type="password">
+			<input id="password" name="password" type="password" placeholder="Enter Password">
 <!-- 			<span>Enter a password longer than 8 characters</span>
  -->		</p>
 		<p>

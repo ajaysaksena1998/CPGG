@@ -444,8 +444,8 @@
 
             <button type="submit" class="submit-button">Submit</button>
 
-        </form>
-        </div> -->
+        </form>-->
+        </div>
 
         <!-- FOOTER SECTION -->
     <footer class="footer-distributed">

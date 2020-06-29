@@ -29,15 +29,15 @@ body
 @media screen and (min-width: 900px)
 {
 .container1{
-       display: inline-block;
-        width: 17.5%;
+        display: inline-block;
+        width: 20%;
         border: 0.2px solid rgba(0, 0, 0, 0.075);
         padding: 1vw;
         height:14vw;
 }
 .container2{
   display: inline-block;
-   width: 17.5%;
+   width: 20%;
    padding: 1vw;
    height:15vw;
 }
@@ -48,11 +48,5 @@ body
    padding: 1vw;
    height:14vw;
 }
-.container9{
-	  display: inline-block;
-	     padding: 1vw;
-            width:33%;
-            hieght:10vw;
-        }
 }
 

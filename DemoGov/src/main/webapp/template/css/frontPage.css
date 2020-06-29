@@ -10,7 +10,7 @@ body
 {
     padding-top: 4px;
     padding-bottom: 4px;
-    background-image: url("..template/Cover/1.jpg");
+    background-image: url("/Cover/1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;
@@ -102,13 +102,15 @@ img
     position: absolute;
     right: 1vw;
     top: 1vw;
+    font-size: 10px;
     
 }
 .button-2
 {
     position: absolute;
     right: 12vw;
-    top: 1vw;
+    top: 1vw;    
+    font-size: 10px;
 }
 .button-3
 {
@@ -185,7 +187,7 @@ p
 {
     padding-top: 4px;
     padding-bottom: 4px;
-    background-image: url("..template/Cover/1.jpg");
+    background-image: url("/Cover/1.jpg");
     background-repeat: no-repeat;
     background-attachment: fixed;
     background-position: center;

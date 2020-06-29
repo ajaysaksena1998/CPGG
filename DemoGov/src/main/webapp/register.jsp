@@ -21,7 +21,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SignUp</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/style1.css">
   <link rel="stylesheet" href="${pageContext.request.contextPath }/template/select-style.css">
 </head>
 <body>
@@ -31,16 +31,16 @@
 		 
 		<p>
 			<label for="Name" class="floatLabel">Name</label>
-			<input id="Name" name="name" type="text" required="required">
+			<input id="Name" name="name" type="text" placeholder="Enter Name">
 		</p>
 		<p>
 			<label for="Email" class="floatLabel">Email</label>
-			<input id="Email" name="email" type="text" required="required">
+			<input id="Email" name="email" type="text" placeholder="Enter Email">
 		</p>
 		<p>
 			<label for="Location_Category" class="floatLabel">Location Category</label>
 			<div>
-			  <select id="valueselector" name="loc_category" class="select-css" required="required">
+			  <select id="valueselector" name="loc_category" class="select-css">
 				  <option value="others">Choose a value</option>
 				  <option value="Nagar_Nigam">Nagar Nigam</option>
 				  <option value="Nagar_Palika_Parishad">Nagar Palika Parishad</option>
@@ -169,23 +169,24 @@
 	
 		<p>
 			<label for="password" class="floatLabel">Password</label>
-			<input id="password" name="password" type="password" required="required">
+			<input id="password" name="password" type="password" placeholder="Enter Password">
 <!-- 			<span>Enter a password longer than 8 characters</span>
  -->		</p>
 		<p>
 			<label for="confirm_password" class="floatLabel">Confirm Password</label>
-			<input id="confirm_password" type="password">
+			<input id="confirm_password" type="password" placeholder="Confirm Password">
 <!-- 			<span>Your passwords do not match</span>
  -->		</p>
 		<p>
 			<button type="submit">Register</button>
 		</p>
+		
 		<p>	
 					<button formaction="/openlogin">Already have an account</button>
-					</p>
+	</p>
 	</form>
-	
-<!-- partial -->
+
+	<!-- partial -->
   <script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script><script  src="./script.js"></script>
   <script src="custom.js"></script>
 </body>

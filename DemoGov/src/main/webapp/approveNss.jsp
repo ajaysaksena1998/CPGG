@@ -45,7 +45,7 @@
     </div>
 
     <div class="midsection">
-        <h1 class="department-midsection-text">Department: Consumer Price Index</h1>
+        <h1 class="department-midsection-text">Department: National Small Savings</h1>
         
         <div class="container">
             <h2>Choose from Table:</h2>
@@ -54,7 +54,7 @@
                 <div class="options-container">
                     <div class="option">
                         <input type="radio" class="radio" id="id01" name="category" />
-                        <label class="lbl" for="id01">Districtwise Consumer Price Index</label>
+                        <label class="lbl" for="id01">Districtwise Net Deposits in National Small Savings</label>
                     </div>
                 </div>
 
@@ -65,7 +65,7 @@
         </div>
 <!--Table Form-->
         <form id="institution_district" method="POST" class="input-form">
-            <h1 class="heading">Districtwise Consumer Price Index</h1>
+            <h1 class="heading">Districtwise Net Deposits in National Small Savings</h1>
     
             <div class="container">
 <table class="table">
@@ -74,8 +74,9 @@
 		    
 <!-- 			<th width="10%" scope="col">Location Category</th>
 			<th width="10%" scope="col">Location ID</th> -->
+			<th width="10%" scope="col">Year</th>
 			<th width="10%" scope="col">District</th>
-			<th width="10%" scope="col">Index</th>
+			<th width="10%" scope="col">Net Deposit</th>
 			<th width="10%" scope="col">Preview</th>
 			
 		</tr>
@@ -83,16 +84,17 @@
 		<tbody>
 		<c:forEach items="${list}" var="list">
 			<tr>
+			    <th scope="row">${list.year }</th>
 			    <th scope="row">${list.district }</th>
-				<td>${list.ind }</td>
-				 <td><button class="btn btn-primary"><a href="/previewconsumer/${list.id }" style="color: white;">Preview</a></button></td>
+				<td>${list.net_deposit }</td>
+				 <td><button class="btn btn-primary"><a href="/previewnss/${list.id }" style="color: white;">Preview</a></button></td>
 				<!-- <td><button class="btn btn-danger">Decline</button></td> -->
 				
 			</tr>
 		</c:forEach>
 		</tbody>
 		</table>
-				<button class="btn btn-success"><a href="/consumerapproved" style="color: white;" onclick="func();">Approve</a></button>
+				<button class="btn btn-success"><a href="/nssapproved" style="color: white;" onclick="func();">Approve</a></button>
 		</div>
         </form>
 

@@ -22,7 +22,7 @@
   }
   .select-box {
     display: flex;
-    width: 450px;
+    width: 50%;
     flex-direction: column;
   }
   
@@ -129,7 +129,7 @@
 }
 .select-box {
   display: flex;
-  width: 450px;
+  width: 100%;
   flex-direction: column;
 }
 

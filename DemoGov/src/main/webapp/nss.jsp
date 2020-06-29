@@ -62,8 +62,7 @@
 	</div>
 
 	<div class="midsection">
-		<h1 class="department-midsection-text">Department: Consumer Price
-			Index</h1>
+		<h1 class="department-midsection-text">Department: National Small Savings</h1>
 
 		<div class="container">
 			<h2>Choose from Table:</h2>
@@ -72,7 +71,7 @@
 				<div class="options-container">
 					<div class="option">
 						<input type="radio" class="radio" id="id01" name="category" /> <label
-							class="lbl" for="id01">Districtwise Consumer Price Index</label>
+							class="lbl" for="id01">Districtwise Net Deposits in National Small Savings</label>
 					</div>
 
 				</div>
@@ -83,9 +82,9 @@
 		<hr class="style13">
 
 		<!--Table Form-->
-		<form action="/cpivalues" id="institution_district"
+		<form action="/nssvalues" id="institution_district"
 			method="POST" class="input-form">
-			<h1 class="heading">Districtwise Consumer Price Index</h1>
+			<h1 class="heading">Districtwise Net Deposits in National Small Savings</h1>
 
 			<label for="Year" class="input-labels"><b>Year:</b></label> <input
 				type="text" id="Year" name="year" class="input-fields" required="required"> 
@@ -110,9 +109,9 @@
 				<option value="Garhwal Mandal">Garhwal Mandal</option>
 				<option value="Kumoun Mandal">Kumoun Mandal</option>
 			</select> 
-			<label for="c" class="input-labels"><b>Index
+			<label for="c" class="input-labels"><b>Net Deposit
 			</b></label> 
-			<input type="text" id="c" name="ind" class="input-fields"
+			<input type="text" id="c" name="net_deposit" class="input-fields"
 				required="required"><!--  <label for="Senior_Secondary"
 				class="input-labels"><b>Senior Secondary:</b></label> <input
 				type="text" name="districtwise_consumer_price_indexcol"
@@ -124,7 +123,7 @@
 			</div>
 		</form>
 
-		<form class="input-form" action="/uploadcpi" method="post"
+		<form class="input-form" action="/uploadnss" method="post"
 			id="sample" enctype="multipart/form-data">
 			<h4 class="heading">Want to Upload a file?</h4>
 			<div class="form-group container">

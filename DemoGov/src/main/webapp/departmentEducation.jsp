@@ -48,56 +48,22 @@
 		</ul>
 	</div>
 
-
-	<div id="loginWindow" class="login-window">
-		<span
-			onclick="document.getElementById('loginWindow').style.display='none'"
-			class="close-login-window" title="Close Modal"> &times; </span>
-
-		<!-- LOGIN WINDOW -->
-		<form class="login-window-content login-window-animate"
-			action="/login" method="POST">
-
-			<div class="container">
-				<br>
-				<br> <label for="uname"><b>Username: </b></label> <input
-					type="text" placeholder="Enter Username" name="uname"
-					class="login-input-field" required> <br>
-				<br> <label for="psw"><b>Password: </b></label> <input
-					type="password" placeholder="Enter Password" name="psw"
-					class="login-input-field" required> <br>
-				<br>
-				<button type="submit" class="login-button">Login</button>
-				<button type="button" class="login-cancel-button"
-					onclick="document.getElementById('loginWindow').style.display='none'">Cancel</button>
-				<br>
-				<br> <label> <input type="checkbox" checked="checked"
-					name="remember"> Remember me
-				</label>
-			</div>
-
-			<div class="container" style="background-color: #f1f1f1">
-				<a href="#" class="forgot-password-link">FORGOT PASSWORD</a>
-			</div>
-		</form>
-	</div>
 	<!-- MIDSECTION -->
-	<div class="midsection">
-		<h1 class="department-midsection-text">Education</h1>
-		<div class="department-card">
-			<a href="/displayeducationGraph1">
-				<p class="card-title">Districtwise Degree/P.G Colleges in
-					Uttarakhand</p> <img src="" alt="" class="card-image">
-		</div>
-		<div class="department-card">
-			<a href="/displayeducationGraph2">
-				<p class="card-title">Yearwise Students in Recognised
-					Educational Institutions in Uttarkhand</p> <img src="" alt=""
-				class="card-image">
-			</a>
-		</div>
-	</div>
 
+	<div class="midsection">
+        <h1 class="department-midsection-text">Department: Education</h1>
+        <div class="department-card">
+          <a href="/displayeducationGraph1">
+            <p class="card-title">Districtwise Degree/P.G Colleges</p>
+          </a>
+        </div>
+        <div class="department-card">
+          <a href="/displayeducationGraph2">
+            <p class="card-title">Yearwise Students in Educational Institutions</p>
+          </a>
+        </div>
+	</div>
+	
 	<!-- FOOTER SECTION -->
 	<!-- FOOTER SECTION -->
 	<footer class="footer-distributed">
@@ -112,7 +78,7 @@
 				<a href="#">Home</a> | <a href="#">Department</a> | <a href="#">Contact</a>
 			</p>
 
-			<p class="footer-company-name">© Government of Uttarakhand, All
+			<p class="footer-company-name">ï¿½ UPES, All
 				rights reserved</p>
 		</div>
 

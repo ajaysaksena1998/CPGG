@@ -136,7 +136,7 @@
             <a href="/departmentEducation" class="view-reports-button">VIEW REPORTS</a> 
         </div>
         <div class="card" id="industry">
-            <h3 class="card-title">Industry & Mining</h3>
+            <h3 class="card-title">Transportation & Communication</h3>
             <p class="card-description">State is considered as industrially developed state of India. State economy has witnessed high growth trajectory. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn3">Read More</a>
 			<!-- The Modal -->
@@ -150,10 +150,10 @@
             <div class="container3">
             <canvas id="pie-chart2"></canvas>
             </div>
-            <a href="/department.html" class="view-reports-button">VIEW REPORTS</a> 
+            <a href="/departmentTransport" class="view-reports-button">VIEW REPORTS</a> 
         </div>
         <div class="card" id="health">
-            <h3 class="card-title">Health</h3>
+            <h3 class="card-title">Consumer Price Index</h3>
             <p class="card-description">Health care infrastructure is a vital ingredient to achieve a significant improvement in the health status. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn4">Read More</a>
 			<!-- The Modal -->
@@ -167,10 +167,10 @@
             <div class="container3">
             <canvas id="pie-chart3"></canvas>
             </div>
-            <a href="/department.html" class="view-reports-button">VIEW REPORTS</a> 
+            <a href="/departmentConsumer" class="view-reports-button">VIEW REPORTS</a> 
         </div>
         <div class="card" id="women">
-            <h3 class="card-title">Women & Child Development</h3>
+            <h3 class="card-title">National Small Savings</h3>
             <p class="card-description">Uttrakhand is continuously striving towards institutionalization of a strategy to. . .</p>
             <a class="card-readmore-link"  href="#popMore" id="myBtn5">Read More</a>
 			<!-- The Modal -->
@@ -186,7 +186,7 @@
             <div class="container3">
             <canvas id="pie-chart4"></canvas>
             </div>
-            <a href="/department.html" class="view-reports-button">VIEW REPORTS</a>
+            <a href="/departmentNational" class="view-reports-button">VIEW REPORTS</a>
         </div>
         <div class="card" id="others">
             <h3 class="card-title">Others</h3>
@@ -250,11 +250,11 @@
                 <span>About this Website</span>
                 Contents published in this website are managed and maintained by the team of UPES. For any queries please refer to the developer in the contact us tab.</p>
             <div class="footer-icons">
-                <a href="#"><i class="fa fa-facebook"></i></a>
-                <a href="#"><i class="fa fa-twitter"></i></a>
+                <a href="https://www.facebook.com/UttarakhandDIPR/"><i class="fa fa-facebook"></i></a>
+                <a href="https://twitter.com/dipr_uk?lang=en"><i class="fa fa-twitter"></i></a>
                 <a href="#"><i class="fa fa-instagram"></i></a>
                 <a href="#"><i class="fa fa-linkedin"></i></a>
-                <a href="#"><i class="fa fa-youtube"></i></a>
+                <a href="https://www.youtube.com/channel/UCX7c5KGrPjG8tzna7xhro4g"><i class="fa fa-youtube"></i></a>
             </div>
         </div>
     </footer>

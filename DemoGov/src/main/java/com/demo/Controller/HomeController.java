@@ -29,6 +29,7 @@ import com.demo.Entities.Education.Education_pupil_teacher_ratio_district;
 import com.demo.Entities.Education.Education_pupil_teacher_ratio_year;
 import com.demo.Entities.Education.Education_students_district;
 import com.demo.Entities.Education.Education_students_year;
+import com.demo.Entities.NSS.Nss;
 import com.demo.Entities.Police.pc_police_stations_registered_crimes_year;
 import com.demo.Entities.Registration.User;
 import com.demo.Entities.Tac.Transport;
@@ -37,6 +38,7 @@ import com.demo.FileService.SpringFileService;
 import com.demo.FileService.SpringPoliceService;
 import com.demo.FileService.SpringTransService;
 import com.demo.FileService.SpringcpiService;
+import com.demo.FileService.SpringnssService;
 import com.demo.Repositories.AgricultureTable1Repo;
 import com.demo.Repositories.OtpRepo;
 import com.demo.Repositories.UserRepo;
@@ -50,6 +52,7 @@ import com.demo.Repositories.Education.Edu_Pupil_Teacher_Ratio_Dis_Repo;
 import com.demo.Repositories.Education.Edu_Pupil_Teacher_Ratio_Year_Repo;
 import com.demo.Repositories.Education.Edu_Students_Dis_Repo;
 import com.demo.Repositories.Education.Edu_Students_Year_Repo;
+import com.demo.Repositories.NSS.NssRepo;
 import com.demo.Repositories.Police.PoliceRepo;
 import com.demo.Repositories.Tac.TransportRepo;
 import com.demo.Repositories.cpi.CpiRepo;
@@ -127,6 +130,12 @@ public class HomeController {
 	
 	@Autowired
 	SpringTransService transService;
+	
+	@Autowired
+	NssRepo nssR;
+	
+	@Autowired
+	SpringnssService nssService;
 	
 	
 //	BCryptPasswordEncoder encoder = new BCryptPasswordEncoder();
@@ -310,6 +319,85 @@ public class HomeController {
 		return "educationGraph2.jsp";
 	}
 	
+	@GetMapping("/displayTransportGraph1")
+	public String TransportDept1(Model model)
+	{
+		Map<String,Double> dataHeavyVehicle=new LinkedHashMap<>();
+		Map<String,Double> dataDeliveryVan=new LinkedHashMap<>();
+		Map<String,Double> dataBuses=new LinkedHashMap<>();
+		Map<String,Double> dataMaxiCab=new LinkedHashMap<>();
+		Map<String,Double> dataThreeWheelers=new LinkedHashMap<>();
+		Map<String,Double> dataTwoWheelers=new LinkedHashMap<>();
+		Map<String,Double> dataFourWheelers=new LinkedHashMap<>();
+		Map<String,Double> dataOthers=new LinkedHashMap<>();
+		Map<String,Double> dataTotal=new LinkedHashMap<>();
+		List<Transport> list = transRepo.findAll();
+		for (Transport d : list) 
+		{
+			if(d.getApprove()==0)
+				continue;
+		dataHeavyVehicle.put("'"+d.getYear()+"'",d.getHeavy_vehicles());
+		dataDeliveryVan.put("'"+d.getYear()+"'",d.getDeliver_recovery_van());
+		dataBuses.put("'"+d.getYear()+"'",d.getBuses());
+		dataMaxiCab.put("'"+d.getYear()+"'",d.getMaxi_taxi_cab());
+		dataThreeWheelers.put("'"+d.getYear()+"'",d.getThree_wheelers());
+		dataTwoWheelers.put("'"+d.getYear()+"'",d.getTwo_wheelers());
+		dataFourWheelers.put("'"+d.getYear()+"'",d.getFour_wheelers());
+		dataOthers.put("'"+d.getYear()+"'",d.getOthers());
+		dataTotal.put("'"+d.getYear()+"'",d.getTotal());
+		
+//		System.out.println(d.getJunior_Basic_Schools());
+		}
+		model.addAttribute("dataHeavyVehicle",dataHeavyVehicle);
+		model.addAttribute("dataDeliveryVan",dataDeliveryVan);
+		model.addAttribute("dataBuses",dataBuses);
+		model.addAttribute("dataMaxiCab",dataMaxiCab);
+		model.addAttribute("dataThreeWheelers",dataThreeWheelers);
+		model.addAttribute("dataTwoWheelers",dataTwoWheelers);
+		model.addAttribute("dataFourWheelers",dataFourWheelers);
+		model.addAttribute("dataOthers",dataOthers);
+		model.addAttribute("dataTotal",dataTotal);
+		
+		return "transportGraph1.jsp";
+	}
+	@GetMapping("/displaycpiGraph1")
+	public String cpiDept1(Model model)
+	{	//Date date=new Date();
+		Map<String,Double> data=new LinkedHashMap<>();
+		List<District_cpi> list = cpiRepo.findAll();
+		for (District_cpi d : list) 
+		{
+		
+		if(d.getDistrict().equalsIgnoreCase("uttrakhand") || d.getDistrict().equalsIgnoreCase("Garhwal Mandal") || d.getDistrict().equalsIgnoreCase("Kumaun Mandal"))
+		 continue;
+//		if(d.getApprove()==1&&d.getYear().substring(0, 4).equals(Integer.toString(1900+date.getYear()))  )
+		if(d.getApprove()==1)
+		{
+			data.put("'"+d.getDistrict().toUpperCase()+"'",  d.getInd());
+
+		}		
+		}
+		model.addAttribute("data", data);
+		
+		//System.out.println(1900+date.getYear());
+		return "cpiGraph1.jsp";
+	}
+	@GetMapping("/displayNationalGraph1")
+	public String nssDept(Model model)
+	{
+		Map<String,Double> data=new LinkedHashMap<>();
+		List<Nss> list = nssR.findAll();
+		for (Nss d : list) 
+		{if(d.getApprove()==0||d.getDistrict().equalsIgnoreCase("uttarakhand") || d.getDistrict().equalsIgnoreCase("Garhwal Mandal") || d.getDistrict().equalsIgnoreCase("Kumaun Mandal"))
+			continue;
+		{
+			data.put("'"+d.getDistrict().toUpperCase()+"'", d.getNet_deposit());
+				
+		}}
+		model.addAttribute("data", data);
+		return "nssGraph1.jsp";
+	}
+	
 	@RequestMapping("/secondPage")
 	public String secondPage() {
 		return "secondPage.jsp";
@@ -323,6 +411,18 @@ public class HomeController {
 	@RequestMapping("/departmentPoliceCrime")
 	public String departmentPoliceCrime() {
 		return "departmentPoliceCrime.jsp";
+	}
+	@RequestMapping("/departmentTransport")
+	public String departmentTransport() {
+		return "departmentTransport.jsp";
+	}
+	@RequestMapping("/departmentConsumer")
+	public String departmentcpi() {
+		return "departmentcpi.jsp";
+	}
+	@RequestMapping("/departmentNational")
+	public String departmentnational() {
+		return "departmentNational.jsp";
 	}
 	
 	@RequestMapping("/openlogin")
@@ -719,6 +819,9 @@ return model;
 		else if(agri.getYear().equals("Consumer")) {
 			return "redirect:/consumerapp";
 		}
+		else if(agri.getYear().equals("nss")) {
+			return "redirect:/nssapp";
+		}
 		return null;
 	}
 	
@@ -825,6 +928,7 @@ return model;
 		if(byDistrict!=null) {
 			byDistrict.setLoc_category(2);
 			byDistrict.setLoc_id(2);
+			byDistrict.setYear(cpi.getYear());
 			byDistrict.setInd(cpi.getInd());
 			byDistrict.setApprove(0);
 			cpiRepo.save(byDistrict);
@@ -1003,6 +1107,93 @@ return model;
 			}
 		}
 		return "redirect:/consumerapp";
+	}
+	
+	@RequestMapping("/nss")
+	public String nss() {
+		return "nss.jsp";
+	}
+	
+	@RequestMapping(value = "/nssvalues", method = RequestMethod.POST)
+	public String nssvalues(Nss nss) {
+		Nss byDistrict = nssR.findByDistrict((nss.getDistrict()));
+		if(byDistrict!=null) {
+			byDistrict.setLoc_category(2);
+			byDistrict.setLoc_id(2);
+			byDistrict.setYear(nss.getYear());
+			byDistrict.setDistrict(nss.getDistrict());
+			byDistrict.setNet_deposit(nss.getNet_deposit());
+			byDistrict.setApprove(0);
+			nssR.save(byDistrict);
+		}
+		else {
+			nss.setLoc_category(2);
+			nss.setLoc_id(2);
+			nss.setApprove(0);
+			nssR.save(nss);
+		}
+		return "nss.jsp";
+	}
+	
+	
+	@RequestMapping(value= "/uploadnss", method=RequestMethod.POST)
+	public String uploadnss(Nss nss, RedirectAttributes redirect) {
+	
+		boolean isFlag= nssService.saveDataFromFile(nss.getFile());
+		if(isFlag) {
+			redirect.addFlashAttribute("success", "File Uploaded Successfully");
+		}
+		else {
+			redirect.addFlashAttribute("error", "There is some error in file upload. Kindly try again!!!");
+		}
+		return "nss.jsp";
+	}
+	
+	@RequestMapping("nssapp")
+	public ModelAndView nssapp() {
+		ModelAndView model = new ModelAndView("approveNss.jsp");
+		List<Nss> all = nssR.findAll();
+		List<Nss> sample = new ArrayList<>();
+		for(Nss n : all) {
+			if(n.getApprove()==0) {
+				sample.add(n);
+			}
+		}
+		model.addObject("list", sample);
+		return model;
+	}
+	
+	
+	@RequestMapping("/previewnss/{id}")
+	public ModelAndView previewnss(@PathVariable("id") int id, RedirectAttributes red) {
+		ModelAndView model = new ModelAndView("/sampleNssForm.jsp");
+		Nss cpi = nssR.findById((long) id).get();
+		cpi.setLoc_category(2);
+		cpi.setLoc_id(2);
+		model.addObject("value", cpi);
+		return model;
+	}
+	
+	@RequestMapping("/postnss")
+	public String postnss(Nss cpi, RedirectAttributes redirect) {
+		Nss district_cpi = nssR.findById(cpi.getId()).get();
+		district_cpi.setDistrict(cpi.getDistrict());
+		district_cpi.setNet_deposit(cpi.getNet_deposit());
+		nssR.save(district_cpi);
+		return "redirect:/nssapp";
+	}
+	
+	@RequestMapping("/nssapproved")
+	public String nssapproved(RedirectAttributes red) {
+		
+		List<Nss> all = nssR.findAll();
+		for(Nss d : all) {
+			if(d.getApprove()==0) {
+				d.setApprove(1);
+				nssR.save(d);
+			}
+		}
+		return "redirect:/nssapp";
 	}
 	
 }
