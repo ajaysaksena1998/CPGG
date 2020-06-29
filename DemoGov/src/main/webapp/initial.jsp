@@ -25,7 +25,7 @@
         </div>
         <ul class="navbar-list" id="navbarList">
             <li class="navbar-list-items"><a href="/login" class="navbar-link">Home</a></li>
-            <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
+            <li class="navbar-list-items"><a href="/secondPage2" class="navbar-link">Dashboard</a></li>
             <li class="navbar-list-items"><a href="/userapp" class="navbar-link">User Approval</a></li>
             <li class="navbar-list-items" ><a class="select-language-button" style="text-decoration: none;" href="/">Log Out</a></li>
         </ul>
@@ -101,14 +101,14 @@
             <h2>Select Departments</h2>
 
             <form action= "/sendData" method="post">
-            <input list="Year" name="Year" style="padding: 8px;">
-            <datalist id="Year">
+<!--             <input list="Year" name="Year" style="padding: 8px;">
+ -->            <select id="Year" name="Year" style="padding: 8px;">
                 <option selected="selected" disabled="disabled">Select the Department</option>
                 <option value="Education">Education</option>
                 <option value="Police">Police</option>
                 <option value="Consumer">Consumer</option>
-                <option value="Transportation">Transportation</option>
-            </datalist>
+                <option value="Transport">Transportation</option>
+            </select>
             <input type="submit" style="background: rgb(3, 124, 223); color: white; margin-left:2vw ; padding: 8px; border-radius: 5px;">
             </form>
         </div>

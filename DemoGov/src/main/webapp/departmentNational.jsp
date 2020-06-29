@@ -67,7 +67,7 @@
         <h1 class="department-midsection-text">National Small Savings</h1>
         <div class="department-card">
          <a href="/displayNationalGraph1">    
-            <p class="card-title">Districtwise Net Deposits in National Small Savings in Uttarakhand </p>
+            <p class="card-title">Districtwise Net Deposits in NSS </p>
            <img src="" alt="" class="card-image">
         </div>
 </div>

@@ -96,7 +96,7 @@
 		</div>
         </form>
 
-       
+       </div>
 
         <!-- FOOTER SECTION -->
     <footer class="footer-distributed">

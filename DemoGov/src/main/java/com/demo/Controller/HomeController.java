@@ -1196,4 +1196,9 @@ return model;
 		return "redirect:/nssapp";
 	}
 	
+	@RequestMapping("/secondPage2")
+	public String secondPage2() {
+		return "secondPage2.jsp";
+	}
+	
 }
