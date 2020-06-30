@@ -92,6 +92,11 @@ form button {
   text-shadow: 0 1px #1E90FF;
 }
 
+form button:hover {
+  background: #016bd4;
+  text-shadow: 0 1px 3px #0080ff;
+}
+
 form input[type="submit"]:hover {
   background: #016bd4;
   text-shadow: 0 1px 3px #0080ff;

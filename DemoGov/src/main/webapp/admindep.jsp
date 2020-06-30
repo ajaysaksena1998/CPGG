@@ -26,8 +26,8 @@
             </a>
         </div>
         <ul class="navbar-list" id="navbarList">
-            <li class="navbar-list-items"><a href="/" class="navbar-link">Home</a></li>
-                                    <li class="navbar-list-items"><a href="/secondPage" class="navbar-link">Dashboard</a></li>
+            <li class="navbar-list-items"><a href="#" class="navbar-link">Home</a></li>
+                                    <li class="navbar-list-items"><a href="/secondPage2" class="navbar-link">Dashboard</a></li>
             
             <li class="navbar-list-items" ><button class="select-language-button"><a href="/" style="color: white;">Logout</a></button></li>
         </ul>
@@ -55,11 +55,11 @@
           </div>
           
           <ul class="side-navigation-list">
-              <li class="side-navigation-list-items"><a href="#population">Population</a></li>
-              <li class="side-navigation-list-items"><a href="#education">Education</a></li>
-              <li class="side-navigation-list-items"><a href="#industry">Industry & mining</a></li>
-              <li class="side-navigation-list-items"><a href="#health">Health</a></li>
-              <li class="side-navigation-list-items"><a href="#women">Women & Child Development</a></li>
+              <li class="side-navigation-list-items"><a href="/departmentPoliceCrime" style="color: blue;">Police & Crimes</a></li>
+              <li class="side-navigation-list-items"><a href="/departmentEducation" style="color: blue;">Education</a></li>
+              <li class="side-navigation-list-items"><a href="/departmentTransport" style="color: blue;">Transportation & Communication</a></li>
+              <li class="side-navigation-list-items"><a href="/departmentConsumer" style="color: blue;">Consumer Price Index</a></li>
+              <li class="side-navigation-list-items"><a href="/departmentNational" style="color: blue;">National Small Savings</a></li>
               <li class="side-navigation-list-items"><a href="#others">Others</a></li>
           </ul>
 

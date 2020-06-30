@@ -293,6 +293,24 @@ public class HomeController {
 		model.addAttribute("data", data);
 		return "educationGraph1.jsp";
 	}
+	@GetMapping("/displayeducationGraph1.1")
+	public String educationDept1_1(Model model)
+	{
+		Map<String,Double> data=new LinkedHashMap<>();
+		List<Education_institution_district> list = eduDisRepo.findAll();
+		for (Education_institution_district d : list) 
+		{
+		if(d.getApprove()==1)
+		{
+			if( d.getDistrict().equalsIgnoreCase("Garhwal Mandal") || d.getDistrict().equalsIgnoreCase("Kumaun Mandal"))
+			{
+			data.put("'"+d.getDistrict().toUpperCase()+"'", d.getDegree());
+			}		
+		}
+		}
+		model.addAttribute("data", data);
+		return "educationGraph1.1.jsp";
+	}
 	@GetMapping("/displayeducationGraph2")
 	public String educationDept2(Model model)
 	{

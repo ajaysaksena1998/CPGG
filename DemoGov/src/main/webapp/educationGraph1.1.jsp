@@ -22,7 +22,7 @@
 	crossorigin="anonymous"></script>
 <link rel="icon" href="favicon.ico">
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
-  <title>Districtwise Degree/P.G. Colleges in Uttarakhand</title>
+  <title>Zonewise Degree/P.G. Colleges in Uttarakhand</title>
 </head>
 <body>
   <div class="nav-bar">
@@ -50,8 +50,8 @@
   <div class="midsection" id="mid">
     <div class="container" id="graph">
       <canvas id="pie-chart"></canvas>
-      <form action="/displayeducationGraph1.1">
-      <button id="zone">Zone Wise</button>
+      <form action="/displayeducationGraph1">
+      <button id="zone">District Wise</button>
     </form>
     </div>
   </div>
@@ -118,15 +118,15 @@
         data: {
           labels: ${data.keySet()},
           datasets: [{
-            label: "Population (millions)",
-            backgroundColor: ["#3e95cd", "#FF4500","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C","#800000","#808000","#FF0000","#808080","#00FFFF"],
+            label: "Zonewise Degree/P.G. Colleges in Uttarakhand",
+            backgroundColor: ["#c45850", "#800000","#3cba9f","#e8c3b9","#c45850","#8B4513","#4B0082","#F0E68C","#800000","#808000","#FF0000","#808080","#00FFFF"],
             data: ${data.values()}
           }]
         },
         options: {
           title: {
             display: true,
-            text: 'Districtwise Degree/P.G. Colleges in Uttarakhand',
+            text: 'Zonewise Degree/P.G. Colleges in Uttarakhand',
             	fontSize:25
           },
           legend:{

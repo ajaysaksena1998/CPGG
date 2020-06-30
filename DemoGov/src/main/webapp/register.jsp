@@ -165,7 +165,7 @@
 						</select>
 					
 					</div>
-					</p>  
+					
 	
 		<p>
 			<label for="password" class="floatLabel">Password</label>

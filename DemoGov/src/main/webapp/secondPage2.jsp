@@ -55,11 +55,11 @@
             </div>
             
             <ul class="side-navigation-list">
-                <li class="side-navigation-list-items"><a href="#population">Police & Crimes</a></li>
-                <li class="side-navigation-list-items"><a href="#education">Education</a></li>
-                <li class="side-navigation-list-items"><a href="#industry">Industry & mining</a></li>
-                <li class="side-navigation-list-items"><a href="#health">Health</a></li>
-                <li class="side-navigation-list-items"><a href="#women">Women & Child Development</a></li>
+                <li class="side-navigation-list-items"><a href="#police" style="color: blue;">Police & Crimes</a></li>
+                <li class="side-navigation-list-items"><a href="#education" style="color: blue;">Education</a></li>
+                <li class="side-navigation-list-items"><a href="#transport" style="color: blue;">Transportation & Communication</a></li>
+                <li class="side-navigation-list-items"><a href="#consumer" style="color: blue;">Consumer Price Index</a></li>
+                <li class="side-navigation-list-items"><a href="#national" style="color: blue;">National Small Savings</a></li>
                 <li class="side-navigation-list-items"><a href="#others">Others</a></li>
             </ul>
 
@@ -100,9 +100,9 @@
             </div>
 
         </div>
-        <div class="card" id="population">
+        <div class="card" id="police">
             <h3 class="card-title" >Police & Crimes</h3>
-            <p class="card-description">Population simply means number of people, living at a particular area (country/region) at a particular. . .</p>
+            <p class="card-description">Police & Crimes simply means number of people, living at a particular area (country/region) at a particular. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn1">Read More</a>
             <div id="myModal1" class="modal">
             <!-- Modal content -->
@@ -134,7 +134,7 @@
             </div>
             <a href="/departmentEducation" class="view-reports-button">VIEW REPORTS</a> 
         </div>
-        <div class="card" id="industry">
+        <div class="card" id="transport">
             <h3 class="card-title">Transportation & Communication</h3>
             <p class="card-description">State is considered as industrially developed state of India. State economy has witnessed high growth trajectory. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn3">Read More</a>
@@ -151,9 +151,9 @@
             </div>
             <a href="/departmentTransport" class="view-reports-button">VIEW REPORTS</a> 
         </div>
-        <div class="card" id="health">
+        <div class="card" id="consumer">
             <h3 class="card-title">Consumer Price Index</h3>
-            <p class="card-description">Health care infrastructure is a vital ingredient to achieve a significant improvement in the health status. . .</p>
+            <p class="card-description"> Consumer Price Index is a vital ingredient to achieve a significant improvement in the health status. . .</p>
             <a class="card-readmore-link" href="#popMore" id="myBtn4">Read More</a>
 			<!-- The Modal -->
             <div id="myModal4" class="modal">
@@ -168,9 +168,9 @@
             </div>
             <a href="/departmentConsumer" class="view-reports-button">VIEW REPORTS</a> 
         </div>
-        <div class="card" id="women">
+        <div class="card" id="national">
             <h3 class="card-title">National Small Savings</h3>
-            <p class="card-description">Uttrakhand is continuously striving towards institutionalization of a strategy to. . .</p>
+            <p class="card-description">Uttarakhand is continuously striving towards institutionalization of a strategy to. . .</p>
             <a class="card-readmore-link"  href="#popMore" id="myBtn5">Read More</a>
 			<!-- The Modal -->
             <div id="myModal5" class="modal">
