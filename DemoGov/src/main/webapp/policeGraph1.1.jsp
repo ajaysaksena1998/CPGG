@@ -49,7 +49,7 @@
     <div class="container" id="graph">
     <canvas id="pie-chart"></canvas>
      <form action="/displaypoliceGraph1">
-      <button id="zone">Number of Police Stations</button>
+      <button id="zone">No. of Police Stations</button>
       </form>
   </div>
 </div>
