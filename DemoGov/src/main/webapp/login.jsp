@@ -5,8 +5,12 @@
 <html lang="en" >
 <head>
   <meta charset="UTF-8">
+  <link rel="icon"
+	href="${pageContext.request.contextPath }/template/images/india.png"
+	type="image/x-icon">
   <title>Sign In</title>
   <link rel="stylesheet" href="${pageContext.request.contextPath }/template/css/style1.css">
+<link rel="icon" href="favicon.ico">
 
 </head>
 <body>

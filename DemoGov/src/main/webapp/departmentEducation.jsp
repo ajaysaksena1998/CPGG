@@ -59,7 +59,7 @@
         </div>
         <div class="department-card">
           <a href="/displayeducationGraph2">
-            <p class="card-title">Yearwise Students in Educational Institutions</p>
+            <p class="card-title">Yearwise Students in Edu. Institutions</p>
           </a>
         </div>
 	</div>

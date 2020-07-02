@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel = "icon" href = "${pageContext.request.contextPath }/template/images/india.png" type = "image/x-icon"> 
+       <link rel="icon" href="favicon.ico">
   <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/template/css/login.css"
 	type="text/css">
@@ -101,9 +103,9 @@
     let myChart = document.getElementById('line-chart').getContext('2d');
 
     // Global Options
-    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontFamily = 'Franklin Gothic Medium';
     //Chart.defaults.global.defaultFontSize = 10;
-    Chart.defaults.global.defaultFontColor = '#777';
+    Chart.defaults.global.defaultFontColor = '#000';
 
     new Chart(document.getElementById("line-chart"), {
     	  type: 'line',
@@ -168,13 +170,25 @@
     	          scales:{
     	          yAxes: [{
     	                  display: true,
+    	                  scaleLabel: {
+    	            		  display: true,
+    	            	  labelString: 'Number Of Motor Vehicles',
+    	            	  fontSize: 20
+    	            	  },
     	                  ticks: {
     	                	  min: 2500,
     	                	  max: 2200000,
     	                	  
                              
     	                  }
-    	              }]
+    	              }],
+    	              xAxes: [{
+    	             	 scaleLabel: {
+    	            		  display: true,
+    	            	  labelString: 'Year',
+    	            	  fontSize: 20
+    	            	  }
+    	             }]
     	      },
     	          tooltips:{
     	            enabled:true

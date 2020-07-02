@@ -277,6 +277,20 @@ public class HomeController {
 		model.addAttribute("totalMap", totalMap);
 		return "policeGraph1.jsp";
 	}
+	@GetMapping("/displaypoliceGraph1.1")
+	public String barGraph(Model model)
+	{
+		Map<String,Double> dataMap=new LinkedHashMap<>();		
+		List<pc_police_stations_registered_crimes_year> list = dpsRepo.findAll();
+		for (pc_police_stations_registered_crimes_year d : list) {
+			if(d.getApprove()==0)
+				continue;
+			dataMap.put("'"+d.getYear().toUpperCase()+"'", d.getHarrassment_of_sc_st()+d.getKidnapping()+d.getMurder()+d.getOther_crimes()+d.getRiots()+d.getRobbery()+d.getTheft());
+			
+		}
+		model.addAttribute("data", dataMap);
+		return "policeGraph1.1.jsp";
+	}
 	@GetMapping("/displayeducationGraph1")
 	public String educationDept(Model model)
 	{

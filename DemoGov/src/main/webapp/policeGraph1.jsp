@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel = "icon" href = "${pageContext.request.contextPath }/template/images/india.png" type = "image/x-icon"> 
+       <link rel="icon" href="favicon.ico">
   <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/template/css/login.css"
 	type="text/css">
@@ -15,6 +17,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/template/css/footer.css"
 	type="text/css">
+	<script src="https://kit.fontawesome.com/7fc0c7085f.js"
+	crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   <title>Yearwise No. of Police Stations in Uttarakhand</title>
 </head>
@@ -44,6 +48,9 @@
   <div class="midsection" id="mid">
     <div class="container" id="graph">
     <canvas id="myChart"></canvas>
+       <form action="/displaypoliceGraph1.1">
+      <button id="zone">Number of Crimes Registered</button>
+      </form>
   </div>
 </div>
 <footer class="footer-distributed">
@@ -101,9 +108,9 @@
     let myChart = document.getElementById('myChart').getContext('2d');
 
     // Global Options
-    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontFamily = 'Franklin Gothic Medium';
     Chart.defaults.global.defaultFontSize = 10;
-    Chart.defaults.global.defaultFontColor = '#777';
+    Chart.defaults.global.defaultFontColor = '#000';
 
     let massPopChart = new Chart(myChart, {
       type:'bar', // bar, horizontalBar, pie, line, doughnut, radar, polarArea
@@ -162,10 +169,18 @@
         scales:{
         yAxes: [{
                 display: true,
-                ticks: {
-                    beginAtZero: true,
-                    
-                }
+                scaleLabel: {
+               	 display: true,
+               	 labelString: 'Number of Police Stations',
+               	  fontSize: 20
+                } 
+            }],
+            xAxes: [{
+            	 scaleLabel: {
+           		  display: true,
+           	  labelString: 'Year',
+           	  fontSize: 20
+           	  }
             }]
     },
         tooltips:{

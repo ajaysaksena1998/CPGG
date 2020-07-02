@@ -7,7 +7,7 @@
 <head>
   <meta charset="UTF-8">
   <title>SignIn</title>
-  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/style.css">
+  <link rel="stylesheet" href="${pageContext.request.contextPath }/template/style1.css">
 
 </head>
 <body>

@@ -6,6 +6,8 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <meta http-equiv="X-UA-Compatible" content="ie=edge">
+     <link rel = "icon" href = "${pageContext.request.contextPath }/template/images/india.png" type = "image/x-icon"> 
+       <link rel="icon" href="favicon.ico">
   <link rel="icon"
 	href="${pageContext.request.contextPath }/template/images/india.png"
 	type="image/x-icon">
@@ -109,9 +111,9 @@
   <script >
 
     // Global Options
-    Chart.defaults.global.defaultFontFamily = 'Lato';
+    Chart.defaults.global.defaultFontFamily = 'Franklin Gothic Medium';
     //Chart.defaults.global.defaultFontSize = 10;
-    Chart.defaults.global.defaultFontColor = '#777';
+    Chart.defaults.global.defaultFontColor = '#000';
 
     new Chart(document.getElementById("pie-chart"), {
         type: 'pie',

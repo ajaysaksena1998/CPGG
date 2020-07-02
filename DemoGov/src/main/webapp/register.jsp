@@ -18,6 +18,10 @@
 			});
 		});
 </script>
+  <link rel="icon"
+	href="${pageContext.request.contextPath }/template/images/india.png"
+	type="image/x-icon">
+ <link rel="icon" href="favicon.ico">
 <head>
   <meta charset="UTF-8">
   <title>SignUp</title>

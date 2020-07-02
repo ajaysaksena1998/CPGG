@@ -17,6 +17,8 @@
 <link rel="stylesheet"
 	href="${pageContext.request.contextPath }/template/css/footer.css"
 	type="text/css">
+	<script src="https://kit.fontawesome.com/7fc0c7085f.js"
+	crossorigin="anonymous"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.6.0/Chart.min.js"></script>
   <title>Districtwise Consumer Price Index</title>
 </head>
@@ -46,6 +48,9 @@
   <div class="midsection" id="mid">
     <div class="container" id="graph">
     <canvas id="pie-chart"></canvas>
+     <form action="/displaypoliceGraph1">
+      <button id="zone">Number of Police Stations</button>
+      </form>
   </div>
 </div>
 <footer class="footer-distributed">
@@ -106,19 +111,19 @@
     Chart.defaults.global.defaultFontColor = '#000';
 
     new Chart(document.getElementById("pie-chart"), {
-        type: 'horizontalBar',
+        type: 'bar',
         data: {
           labels: ${data.keySet()},
           datasets: [{
-            label: "Districtwise Consumer Price Index",
-            backgroundColor: ["#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f","#3cba9f",],
+            label: "Total Crimes Registered",
+            backgroundColor: ["#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082","#4B0082",],
             data: ${data.values()}
           }]
         },
         options: {
           title: {
             display: true,
-            text: 'Districtwise Consumer Price Index in Uttarakhand',
+            text: 'Yearwise Total Crimes Registered in Uttarakhand',
             	fontSize:25
           },
           legend:{
@@ -133,12 +138,11 @@
                   display: true,
                   scaleLabel: {
             		  display: true,
-            	  labelString: 'District',
+            	  labelString: 'Total Crimes Registered',
             	  fontSize: 20
             	  },
                   ticks: {
-                	  min: 2500,
-                	  max: 2200000,
+                	  
                 	  
                      
                   }
@@ -146,7 +150,7 @@
               xAxes: [{
              	 scaleLabel: {
             		  display: true,
-            	  labelString: 'Consumer Price Index',
+            	  labelString: 'Year',
             	  fontSize: 20
             	  }
              }]
