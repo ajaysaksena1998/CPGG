@@ -81,8 +81,8 @@
 
             <label for="IIT" class="input-labels"><b>IIT:</b></label>
             <input type="text" id="IIT" name="iit" class="input-fields" value="${value.iit }">
-
-            <button type="submit" class="submit-button">Submit</button>
+            <br>
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
         </div>
 </body>
